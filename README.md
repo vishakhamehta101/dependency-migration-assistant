@@ -8,13 +8,13 @@ Built as part of a 4-person college project team. Currently focused on **Module 
 
 | Stage | Status |
 |---|---|
-| Ingestion (fetch changelog/migration guide pages) | ✅ Working |
-| Cleaning (strip HTML clutter) | ✅ Working |
-| Chunking (split into searchable pieces) | ✅ Working |
-| Retrieval (search chunks) | 🔜 Next |
-| Codebase scanning | 🔜 Planned |
-| Answer generation (with citations) | 🔜 Planned |
-| Evaluation (against real GitHub PRs) | 🔜 Planned |
+| Ingestion (fetch changelog/migration guide pages) | Working |
+| Cleaning (strip HTML clutter) | Working |
+| Chunking (split into searchable pieces) | Working |
+| Retrieval (search chunks) | Next |
+| Codebase scanning | Planned |
+| Answer generation (with citations) | Planned |
+| Evaluation (against real GitHub PRs) | Planned |
 
 Currently ingests and chunks Pandas' 2.0.0–2.0.3 changelogs and Copy-on-Write migration guide, producing ~1,100 structured, searchable chunks.
 
