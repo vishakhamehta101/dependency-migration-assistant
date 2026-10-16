@@ -28,13 +28,15 @@ MAX_CHUNK_WORDS = 150  # prose pieces larger than this get split further
 # Keyword-containment mapping: if any keyword appears in a section's heading
 # (case-insensitive), the section is labeled with that category.
 CATEGORY_KEYWORDS = {
+    # ORDER MATTERS: the first match wins, so list the most specific keywords first.
+    # e.g. "Removal of prior version deprecations" must hit "removal" before "deprecat".
+    "removal": "breaking_change",
+    "incompatib": "breaking_change",
     "regression": "regression_fix",
     "bug": "bug_fix",
     "enhancement": "enhancement",
     "deprecat": "deprecation",
     "perform": "performance",
-    "incompatib": "breaking_change",
-    "removal": "breaking_change",
 }
 
 

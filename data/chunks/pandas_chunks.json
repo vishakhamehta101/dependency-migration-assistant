@@ -3015,7 +3015,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 42717"
     ],
@@ -3029,7 +3029,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 14146"
     ],
@@ -3043,7 +3043,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 40226",
       "GH 40571"
@@ -3058,7 +3058,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 17126"
     ],
@@ -3072,7 +3072,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 30193"
     ],
@@ -3086,7 +3086,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 34145"
     ],
@@ -3100,7 +3100,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 27615"
     ],
@@ -3114,7 +3114,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 32639"
     ],
@@ -3128,7 +3128,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 27745"
     ],
@@ -3142,7 +3142,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 45033"
     ],
@@ -3156,7 +3156,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 37545"
     ],
@@ -3170,7 +3170,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 30702"
     ],
@@ -3184,7 +3184,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 42113"
     ],
@@ -3198,7 +3198,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 32922"
     ],
@@ -3212,7 +3212,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 33385"
     ],
@@ -3226,7 +3226,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 37877"
     ],
@@ -3240,7 +3240,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 41662"
     ],
@@ -3254,7 +3254,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 39239"
     ],
@@ -3268,7 +3268,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 33637"
     ],
@@ -3282,7 +3282,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 36418"
     ],
@@ -3296,7 +3296,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 45321"
     ],
@@ -3310,7 +3310,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 35224"
     ],
@@ -3324,7 +3324,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 35407"
     ],
@@ -3338,7 +3338,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 45321"
     ],
@@ -3352,7 +3352,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 45018"
     ],
@@ -3366,7 +3366,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 33595"
     ],
@@ -3380,7 +3380,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 30482"
     ],
@@ -3394,7 +3394,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 34853"
     ],
@@ -3408,7 +3408,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 49397"
     ],
@@ -3422,7 +3422,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 49397"
     ],
@@ -3436,7 +3436,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 49397"
     ],
@@ -3450,7 +3450,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 49397"
     ],
@@ -3464,7 +3464,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 47970"
     ],
@@ -3478,7 +3478,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 49397"
     ],
@@ -3492,7 +3492,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 30562"
     ],
@@ -3506,7 +3506,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 37999"
     ],
@@ -3520,7 +3520,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 45422"
     ],
@@ -3534,7 +3534,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 36697"
     ],
@@ -3548,7 +3548,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 41555"
     ],
@@ -3562,7 +3562,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 41555"
     ],
@@ -3576,7 +3576,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 40363"
     ],
@@ -3590,7 +3590,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 47844"
     ],
@@ -3604,7 +3604,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 39258"
     ],
@@ -3618,7 +3618,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 39258"
     ],
@@ -3632,7 +3632,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 44629"
     ],
@@ -3646,7 +3646,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 24518"
     ],
@@ -3660,7 +3660,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 43523"
     ],
@@ -3674,7 +3674,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 32380"
     ],
@@ -3688,7 +3688,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 34171"
     ],
@@ -3702,7 +3702,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 29731"
     ],
@@ -3716,7 +3716,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 35853",
       "GH 36685"
@@ -3731,7 +3731,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 35626"
     ],
@@ -3745,7 +3745,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 47912"
     ],
@@ -3759,7 +3759,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 45302"
     ],
@@ -3773,7 +3773,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 48130"
     ],
@@ -3787,7 +3787,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 41485"
     ],
@@ -3801,7 +3801,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 36838"
     ],
@@ -3815,7 +3815,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 38701"
     ],
@@ -3829,7 +3829,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 37982"
     ],
@@ -3843,7 +3843,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 38836"
     ],
@@ -3857,7 +3857,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 34522"
     ],
@@ -3871,7 +3871,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 47563"
     ],
@@ -3885,7 +3885,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 30615"
     ],
@@ -3899,7 +3899,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 41378"
     ],
@@ -3913,7 +3913,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 40413",
       "GH 43427"
@@ -3928,7 +3928,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 43427"
     ],
@@ -3942,7 +3942,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 34798"
     ],
@@ -3956,7 +3956,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 41789"
     ],
@@ -3970,7 +3970,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 38597"
     ],
@@ -3984,7 +3984,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 37918"
     ],
@@ -3998,7 +3998,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 47266"
     ],
@@ -4012,7 +4012,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 41176"
     ],
@@ -4026,7 +4026,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 48137"
     ],
@@ -4040,7 +4040,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 47728"
     ],
@@ -4054,7 +4054,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 34418"
     ],
@@ -4068,7 +4068,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 41486"
     ],
@@ -4082,7 +4082,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 41485"
     ],
@@ -4096,7 +4096,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 47448"
     ],
@@ -4110,7 +4110,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 41495"
     ],
@@ -4124,7 +4124,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 41699"
     ],
@@ -4138,7 +4138,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 41496"
     ],
@@ -4152,7 +4152,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 41504"
     ],
@@ -4166,7 +4166,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 46134"
     ],
@@ -4180,7 +4180,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 47618"
     ],
@@ -4194,7 +4194,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 41485"
     ],
@@ -4208,7 +4208,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 41485"
     ],
@@ -4222,7 +4222,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 41506"
     ],
@@ -4236,7 +4236,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 41510"
     ],
@@ -4250,7 +4250,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 44896"
     ],
@@ -4264,7 +4264,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 41551"
     ],
@@ -4278,7 +4278,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 46518"
     ],
@@ -4292,7 +4292,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 41485"
     ],
@@ -4306,7 +4306,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 48301"
     ],
@@ -4320,7 +4320,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 48301"
     ],
@@ -4334,7 +4334,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 27573"
     ],
@@ -4348,7 +4348,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 27573"
     ],
@@ -4362,7 +4362,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 47154"
     ],
@@ -4376,7 +4376,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 48128"
     ],
@@ -4390,7 +4390,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 41485"
     ],
@@ -4404,7 +4404,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 41485"
     ],
@@ -4418,7 +4418,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 44710"
     ],
@@ -4432,7 +4432,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 45133"
     ],
@@ -4446,7 +4446,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 41580"
     ],
@@ -4460,7 +4460,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 48128"
     ],
@@ -4474,7 +4474,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 41523"
     ],
@@ -4488,7 +4488,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 41491"
     ],
@@ -4502,7 +4502,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 47587"
     ],
@@ -4516,7 +4516,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 41511"
     ],
@@ -4530,7 +4530,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 41508"
     ],
@@ -4544,7 +4544,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 47587"
     ],
@@ -4558,7 +4558,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 41505"
     ],
@@ -4572,7 +4572,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 41505"
     ],
@@ -4586,7 +4586,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 17966"
     ],
@@ -4600,7 +4600,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 42568"
     ],
@@ -4614,7 +4614,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 38433"
     ],
@@ -4628,7 +4628,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 38944"
     ],
@@ -4642,7 +4642,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 43665"
     ],
@@ -4656,7 +4656,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 38963"
     ],
@@ -4670,7 +4670,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 38963"
     ],
@@ -4684,7 +4684,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 39983"
     ],
@@ -4698,7 +4698,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 46430",
       "GH 46476"
@@ -4713,7 +4713,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 45071"
     ],
@@ -4727,7 +4727,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 44929"
     ],
@@ -4741,7 +4741,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 48821"
     ],
@@ -4755,7 +4755,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 29941"
     ],
@@ -4769,7 +4769,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 29457"
     ],
@@ -4783,7 +4783,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 39220"
     ],
@@ -4797,7 +4797,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 33907",
       "GH 28621"
@@ -4812,7 +4812,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 37601"
     ],
@@ -4826,7 +4826,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 45076"
     ],
@@ -4840,7 +4840,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 30636"
     ],
@@ -4854,7 +4854,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 32516"
     ],
@@ -4868,7 +4868,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 18531"
     ],
@@ -4882,7 +4882,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 30340"
     ],
@@ -4896,7 +4896,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 45947"
     ],
@@ -4910,7 +4910,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 43248"
     ],
@@ -4924,7 +4924,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 40245"
     ],
@@ -4938,7 +4938,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 20647"
     ],
@@ -4952,7 +4952,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 29812"
     ],
@@ -4966,7 +4966,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 42269"
     ],
@@ -4980,7 +4980,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 30489"
     ],
@@ -4994,7 +4994,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 30296"
     ],
@@ -5008,7 +5008,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 30745"
     ],
@@ -5022,7 +5022,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 28277"
     ],
@@ -5036,7 +5036,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 30642"
     ],
@@ -5050,7 +5050,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 30642"
     ],
@@ -5064,7 +5064,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 32591"
     ],
@@ -5078,7 +5078,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 43265"
     ],
@@ -5092,7 +5092,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 40628"
     ],
@@ -5106,7 +5106,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 25623"
     ],
@@ -5120,7 +5120,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 40430"
     ],
@@ -5134,7 +5134,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 30546"
     ],
@@ -5148,7 +5148,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 42351"
     ],
@@ -5162,7 +5162,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 31840"
     ],
@@ -5176,7 +5176,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 34193"
     ],
@@ -5190,7 +5190,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 39022"
     ],
@@ -5204,7 +5204,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 42825"
     ],
@@ -5218,7 +5218,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 35141"
     ],
@@ -5232,7 +5232,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 34810"
     ],
@@ -5246,7 +5246,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 22818"
     ],
@@ -5260,7 +5260,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 34862"
     ],
@@ -5274,7 +5274,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 35003"
     ],
@@ -5288,7 +5288,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 33091"
     ],
@@ -5302,7 +5302,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 41429"
     ],
@@ -5316,7 +5316,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 47834"
     ],
@@ -5330,7 +5330,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 37981",
       "GH 41118",
@@ -5347,7 +5347,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 31302"
     ],
@@ -5361,7 +5361,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 30338"
     ],
@@ -5375,7 +5375,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 31333"
     ],
@@ -5389,7 +5389,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 36179"
     ],
@@ -5403,7 +5403,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 31569"
     ],
@@ -5417,7 +5417,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 47280"
     ],
@@ -5431,7 +5431,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 11787"
     ],
@@ -5445,7 +5445,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 11631"
     ],
@@ -5459,7 +5459,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 29405"
     ],
@@ -5473,7 +5473,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 39328"
     ],
@@ -5487,7 +5487,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 18705"
     ],
@@ -5501,7 +5501,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 36148"
     ],
@@ -5515,7 +5515,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 39767"
     ],
@@ -5529,7 +5529,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 34457"
     ],
@@ -5543,7 +5543,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 36900"
     ],
@@ -5557,7 +5557,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 45523"
     ],
@@ -5571,7 +5571,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 45101"
     ],
@@ -5585,7 +5585,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 41170"
     ],
@@ -5599,7 +5599,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 42870"
     ],
@@ -5613,7 +5613,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 37374"
     ],
@@ -5627,7 +5627,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 38845"
     ],
@@ -5641,7 +5641,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 41733"
     ],
@@ -5655,7 +5655,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 41731"
     ],
@@ -5669,7 +5669,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 42288"
     ],
@@ -5683,7 +5683,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 45083"
     ],
@@ -5697,7 +5697,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 43930"
     ],
@@ -5711,7 +5711,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 44243"
     ],
@@ -5725,7 +5725,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 45573"
     ],
@@ -5739,7 +5739,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 40110"
     ],
@@ -5753,7 +5753,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 41734"
     ],
@@ -5767,7 +5767,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 41770"
     ],
@@ -5781,7 +5781,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 31809"
     ],
@@ -5795,7 +5795,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 45746"
     ],
@@ -5809,7 +5809,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 36695",
       "GH 24804"
@@ -5824,7 +5824,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 46188"
     ],
@@ -5838,7 +5838,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 45072"
     ],
@@ -5852,7 +5852,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 36131"
     ],
@@ -5866,7 +5866,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 39196"
     ],
@@ -5880,7 +5880,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 43740"
     ],
@@ -5894,7 +5894,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 43740"
     ],
@@ -5908,7 +5908,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 47970"
     ],
@@ -5922,7 +5922,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 33469"
     ],
@@ -5936,7 +5936,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 47157"
     ],
@@ -5950,7 +5950,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 31025"
     ],
@@ -5964,7 +5964,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 36955"
     ],
@@ -5978,7 +5978,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 47500"
     ],
@@ -5992,7 +5992,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 34998"
     ],
@@ -6006,7 +6006,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 36795"
     ],
@@ -6020,7 +6020,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 41480"
     ],
@@ -6034,7 +6034,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 46096",
       "GH 46906"
@@ -6049,7 +6049,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 47561"
     ],
@@ -6063,7 +6063,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 41475"
     ],
@@ -6077,7 +6077,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 42834"
     ],
@@ -6091,7 +6091,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 45333"
     ],
@@ -6105,7 +6105,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 46072"
     ],
@@ -6119,7 +6119,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 47177"
     ],
@@ -6133,7 +6133,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 47244"
     ],
@@ -6147,7 +6147,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 47761"
     ],
@@ -6161,7 +6161,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 45795"
     ],
@@ -6175,7 +6175,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 48943"
     ],
@@ -6189,7 +6189,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 47851"
     ],
@@ -6203,7 +6203,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 45302"
     ],
@@ -6217,7 +6217,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 30219"
     ],
@@ -6231,7 +6231,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 47587"
     ],
@@ -6245,7 +6245,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 50648"
     ],
@@ -6259,7 +6259,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 50648"
     ],
@@ -6273,7 +6273,7 @@
     "library": "pandas",
     "version": "2.0.0",
     "section": "Removal of prior version deprecations/changes",
-    "category": "deprecation",
+    "category": "breaking_change",
     "issue_refs": [
       "GH 50829"
     ],
