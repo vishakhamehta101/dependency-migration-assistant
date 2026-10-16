@@ -6,5 +6,8 @@
   "function_pattern": "[A-Za-z]+\\.[a-z_]+\\(\\)",
   "migration_guide_urls": [
     "https://pandas.pydata.org/pandas-docs/version/2.3/user_guide/copy_on_write.html"
+  ],
+  "skip_sections": [
+    "Contributors"
   ]
 }

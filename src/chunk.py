@@ -137,6 +137,12 @@ def extract_details(text: str, settings: dict) -> dict:
     }
 
 
+def extract_version(filename: str) -> str | None:
+    """Pull a version like '2.0.1' out of a filename, or None for non-versioned files."""
+    match = re.search(r"v(\d+\.\d+\.\d+)", filename)
+    return match.group(1) if match else None
+
+
 def chunk_file(filename: str, source_type: str, source_url: str, settings: dict) -> list:
     """Run the full chunking process on one already-fetched HTML file."""
     path = Path(filename)
@@ -149,9 +155,17 @@ def chunk_file(filename: str, source_type: str, source_url: str, settings: dict)
         return []
 
     chunks = []
+    skip = {name.lower() for name in settings.get("skip_sections", [])}
+    version = extract_version(filename)
+    file_id = path.stem.removeprefix("raw_")  # e.g. changelog_v2.0.1
+
     for index, section in enumerate(sections):
         heading_tag = section.find(["h2", "h3"])
-        heading_text = heading_tag.get_text(separator=" ", strip=True).rstrip("#") if heading_tag else "Unknown"
+        heading_text = heading_tag.get_text(separator=" ", strip=True).rstrip("# ") if heading_tag else "Unknown"
+
+        if heading_text.lower() in skip:
+            continue  # config-driven: skip sections like Contributors
+
         category = map_category(heading_text)
 
         if section_has_list(section):
@@ -162,11 +176,12 @@ def chunk_file(filename: str, source_type: str, source_url: str, settings: dict)
         for sub_index, text in enumerate(texts):
             details = extract_details(text, settings)
             chunks.append({
-                "chunk_id": f"{settings['library']}-{source_type}-{index:02d}-{sub_index:02d}",
+                "chunk_id": f"{settings['library']}-{file_id}-{index:02d}-{sub_index:02d}",
                 "text": text,
                 "source_type": source_type,
                 "source_url": source_url,
                 "library": settings["library"],
+                "version": version,
                 "section": heading_text,
                 "category": category,
                 "issue_refs": details["issue_refs"],
