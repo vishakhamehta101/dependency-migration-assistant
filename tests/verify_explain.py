@@ -180,10 +180,13 @@ check("the real invented fix is dropped, flagged, and the verdict stays", findin
 TO_DICT_ANSWER = answer_json(verdict="not_affected", explanation="The note is about the orient argument, which this call does not pass.",
                              fix=None, citations=((1, "Disallow passing abbreviations for orient"),))
 to_dict_result = match.match_usage(usage("to_dict", snippet="rows = df.to_dict()"), [candidate(TO_DICT)])
+explain.MODEL_JUDGES_REVIEW = True
 finding = explain.explain_usage(to_dict_result, FakeModel(TO_DICT_ANSWER), "pandas")
-check("a real 'review' case: 'not_affected' with a valid citation is accepted", to_dict_result["status"] == "review" and finding["verdict"] == "not_affected" and finding["flags"] == [])
+explain.MODEL_JUDGES_REVIEW = False
+check("(optional path) a review usage can be ruled out with a valid citation", to_dict_result["status"] == "review" and finding["verdict"] == "not_affected" and finding["flags"] == [])
 
 # ---- D29: no 'affected' unless the matcher found hard evidence (status documented_change) -----------------
+explain.MODEL_JUDGES_REVIEW = True   # these checks cover the optional path where the model IS asked about review usages
 NON_KEYWORD = real_chunk("Disallow passing non-keyword arguments to read_csv()")
 BACKFILL = real_chunk("Deprecated DataFrame.backfill()")
 read_csv_review = match.match_usage(usage("read_csv", snippet="df = pd.read_csv(path)"), [candidate(NON_KEYWORD)])
@@ -223,6 +226,34 @@ check("raw_verdict keeps what the model last stated even when its answer was rej
 finding = explain.explain_usage(APPEND_RESULT, FakeModel(RuntimeError("down"), RuntimeError("down")), "pandas")
 check("raw_verdict is None when the model never answered", finding["raw_verdict"] is None)
 check("raw_verdict is None when no model was asked", explain.explain_usage(nothing, FakeModel(answer_json()), "pandas")["raw_verdict"] is None)
+explain.MODEL_JUDGES_REVIEW = False
+
+# ---- D30: review usages are never sent to the model ------------------------------------------------------------
+check("by default the model is not asked about review usages", explain.MODEL_JUDGES_REVIEW is False)
+model = FakeModel(answer_json())
+finding = explain.explain_usage(read_csv_review, model, "pandas")
+check("a review usage becomes 'needs_review' and the model is never called", finding["verdict"] == "needs_review" and len(model.calls) == 0)
+check("...with the fixed sentence, the matched notes, and nothing the model could get wrong",
+      "1 note(s)" in finding["explanation"] and "manual check" in finding["explanation"] and finding["citations"] == []
+      and finding["suggested_fix"] is None and finding["flags"] == [] and finding["trace"] == [] and finding["raw_verdict"] is None
+      and finding["matches"] == read_csv_review["matches"] and finding["status"] == "review")
+low_review_d30 = match.match_usage(usage("read_csv", snippet="x = obj.read_csv(path)", resolved=False), [candidate(NON_KEYWORD)])
+finding = explain.explain_usage(low_review_d30, FakeModel(answer_json()), "pandas")
+check("an unconfirmed review usage also carries the unconfirmed-object caveat", finding["verdict"] == "needs_review" and "could not confirm" in finding["explanation"])
+
+NUISANCE = real_chunk("Enforced deprecation of silently dropping nuisance columns")
+groupby_review = match.match_usage(usage("groupby", snippet='counts = frame.groupby("kind").agg("sum")'), [candidate(NUISANCE)])
+model = FakeModel(answer_json(verdict="not_affected", explanation="The call does not use the removed arguments.", fix=None, citations=()))
+finding = explain.explain_usage(groupby_review, model, "pandas")
+check("the real groupby miss: a model that would answer 'not_affected' is never asked, so it cannot give false reassurance",
+      groupby_review["status"] == "review" and finding["verdict"] == "needs_review" and len(model.calls) == 0)
+for label, result in (("the type annotation", annotation_review), ("read_csv(path)", read_csv_review)):
+    model = FakeModel(misread)
+    check(f"the real false alarm on {label} cannot happen: the model is not asked", explain.explain_usage(result, model, "pandas")["verdict"] == "needs_review" and len(model.calls) == 0)
+model = FakeModel(answer_json())
+finding = explain.explain_usage(APPEND_RESULT, model, "pandas")
+check("hard evidence still goes to the model", finding["verdict"] == "affected" and len(model.calls) == 1)
+
 
 # ---- many usages -------------------------------------------------------------------------------
 class AnswersByUsage:
@@ -235,8 +266,8 @@ class AnswersByUsage:
 
 model = AnswersByUsage()
 findings = explain.explain_usages([APPEND_RESULT, nothing, to_dict_result], model, "pandas")
-check("explain_usages: one finding per usage, in the order given", [f["verdict"] for f in findings] == ["affected", "no_documented_change", "not_affected"])
-check("explain_usages: the model is called only for flagged usages (2 of 3, one call each)", len(model.calls) == 2)
+check("explain_usages: one finding per usage, in the order given", [f["verdict"] for f in findings] == ["affected", "no_documented_change", "needs_review"])
+check("explain_usages: the model is called only for usages with hard evidence (1 of 3)", len(model.calls) == 1)
 
 print("\nALL CHECKS PASSED:", ok_all)
 sys.exit(0 if ok_all else 1)

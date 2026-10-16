@@ -19,7 +19,7 @@ check("every recall key is a confirmed (high-confidence) documented change",
       all(by_key[k]["status"] == "documented_change" and by_key[k]["confidence"] == "high" for k in gates_ai.G1_KEYS))
 check("the expected note is among the notes the model is shown, for every recall key",
       all(any(m["chunk"]["text"].startswith(prefix) for m in by_key[k]["matches"]) for k, prefix in gates_ai.G1_KEYS.items()))
-check("every false-alarm key goes to the model (status 'review')", all(by_key[k]["status"] == "review" for k in gates_ai.G2_KEYS))
+check("every false-alarm key is a review-level usage (reported as needs_review under D30)", all(by_key[k]["status"] == "review" for k in gates_ai.G2_KEYS))
 check("the two key lists do not overlap", not set(gates_ai.G1_KEYS) & set(gates_ai.G2_KEYS))
 
 # ---- synthetic findings to test the judge ------------------------------------------------------
@@ -38,8 +38,13 @@ def good_run():
         if r["status"] == "no_documented_change":
             continue
         key = (r["usage"]["file"], r["usage"]["line"], r["usage"]["function"])
-        verdict = "affected" if key in gates_ai.G1_KEYS else ("unsure" if r["confidence"] == "low" else "not_affected")
-        out.append(make_finding(r, verdict, citations=verdict != "not_affected"))
+        if key in gates_ai.G1_KEYS:
+            verdict = "affected"
+        elif r["status"] == "review":
+            verdict = "needs_review"                      # D30: review usages are not sent to the model
+        else:
+            verdict = "unsure"                            # unconfirmed documented changes are capped by D19
+        out.append(make_finding(r, verdict, citations=verdict == "affected"))
     return out
 
 run = good_run()
@@ -67,7 +72,7 @@ g = gates_ai.evaluate_gates(with_change(k1, citations=[]))
 check("G3 fails when 'affected' has no citation", not g["G3"]["passed"])
 low_key = ("loader.py", 10, "append")
 g = gates_ai.evaluate_gates(with_change(low_key, verdict="affected"))
-check("G3 fails when an unconfirmed object is shown as 'affected'", not g["G3"]["passed"] and "unconfirmed" in g["G3"]["failures"][0])
+check("G3 fails when an unconfirmed object is shown as 'affected'", not g["G3"]["passed"] and any("unconfirmed" in f for f in g["G3"]["failures"]))
 g = gates_ai.evaluate_gates(with_change(low_key, explanation="The call is on a list."))
 check("G3 fails when an unconfirmed object's explanation does not say so", not g["G3"]["passed"] and "does not say so" in g["G3"]["failures"][0])
 g = gates_ai.evaluate_gates(with_change(k1, suggested_fix="Use df.concat([extra], ignore_index=True)"))
@@ -75,12 +80,19 @@ check("G3 fails when an ungrounded fix is shown", not g["G3"]["passed"] and "not
 g = gates_ai.evaluate_gates(with_change(k1, suggested_fix="Use concat() instead."))
 check("G3 accepts a grounded fix", g["G3"]["passed"])
 
-second = copy.deepcopy(run); second[0]["verdict"] = "unsure" if second[0]["verdict"] != "unsure" else "affected"
+check("G4 passes when every model-judged verdict agrees", gates_ai.evaluate_gates(run, copy.deepcopy(run))["G4"]["passed"])
+second = copy.deepcopy(run)
+for f in second:
+    if gates_ai.key_of(f) == k1:
+        f["verdict"] = "unsure"
 g = gates_ai.evaluate_gates(run, second)
-check("G4 passes with 1 of 20 verdicts different (95%)", g["G4"]["passed"] and "95%" in g["G4"]["summary"], g["G4"]["summary"])
-second[1]["verdict"] = "unsure" if second[1]["verdict"] != "unsure" else "affected"
-g = gates_ai.evaluate_gates(run, second)
-check("G4 fails with 2 of 20 different (90%), and lists them", not g["G4"]["passed"] and len(g["G4"]["failures"]) == 2)
+check("G4 fails with 1 of the 10 model-judged verdicts different (90%): with this few, 95% means all must agree",
+      not g["G4"]["passed"] and len(g["G4"]["failures"]) == 1 and "10 model-judged" in g["G4"]["summary"], g["G4"]["summary"])
+second = copy.deepcopy(run)
+for f in second:
+    if f["status"] == "review":
+        f["verdict"] = "unsure"
+check("G4 ignores usages the model was never asked about", gates_ai.evaluate_gates(run, second)["G4"]["passed"])
 check("G4 treats a missing finding in the second run as a difference", not gates_ai.evaluate_gates(run, run[:5])["G4"]["passed"])
 
 # ---- G6 (D29) and the raw-verdict statistics ------------------------------------------------------

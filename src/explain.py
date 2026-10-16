@@ -17,6 +17,8 @@ word: everything it says is checked here, in code.
     "unsure" and the explanation says why
   - D29: a usage whose notes only share a NAME with the call (status "review") can never be shown as "affected";
     only the matcher's hard evidence (status "documented_change") can confirm a break
+  - D30: usages with only name-level evidence (status "review") are not sent to the model at all; they are reported
+    as "needs_review" with the matched notes. Only hard evidence ("documented_change") reaches the model
   - every finding keeps a trace of each attempt (the model's raw reply and the problems we found) and the
     verdict the model itself stated (raw_verdict), before any cap
 
@@ -37,6 +39,8 @@ MIN_QUOTE_WORDS = 3
 MAX_SENTENCES = 3
 CAP_LOW_CONFIDENCE = True  # an unconfirmed object can be "unsure" at most, never "affected"
 CAP_REVIEW_STATUS = True   # D29: no "affected" unless the matcher found hard evidence
+MODEL_JUDGES_REVIEW = False  # D30: review usages are not sent to the model (True = ask anyway, with the D29 cap; for experiments)
+UNCONFIRMED_TEXT = " (The scanner could not confirm this object is from {library}, so treat this as a possibility.)"
 REVIEW_CAP_TEXT = ("The changelog has {n} note(s) that mention this function, but none could be matched to this exact call, "
                    "so it needs a manual check.")
 TRACE_REPLY_CHARS = 2000
@@ -186,6 +190,15 @@ def explain_usage(match_result: dict, llm_call, library: str = "the library") ->
         return {**base, "verdict": "no_documented_change", "explanation": "No documented change in the changelog mentions this.",
                 "suggested_fix": None, "citations": [], "flags": [], "trace": [], "raw_verdict": None}
 
+    if match_result["status"] == "review" and not MODEL_JUDGES_REVIEW:
+        # D30: the notes only share a name with this call. A small model can neither confirm nor safely rule out a
+        # break from that, so it is not asked at all; the matched notes go to a person.
+        text = REVIEW_CAP_TEXT.format(n=len(notes))
+        if match_result["confidence"] == "low":
+            text += UNCONFIRMED_TEXT.format(library=library)
+        return {**base, "verdict": "needs_review", "explanation": text, "suggested_fix": None, "citations": [],
+                "flags": [], "trace": [], "raw_verdict": None}
+
     user = build_user_prompt(match_result, library)
     schema = ModelAnswer.model_json_schema()
     problems, answer, failure, attempts, trace, last_stated = [], None, None, 0, [], None
@@ -240,7 +253,7 @@ def explain_usage(match_result: dict, llm_call, library: str = "the library") ->
         if verdict == "affected" and CAP_LOW_CONFIDENCE:
             verdict = "unsure"
             flags.append("capped_unconfirmed_type")
-        explanation += f" (The scanner could not confirm this object is from {library}, so treat this as a possibility.)"
+        explanation += UNCONFIRMED_TEXT.format(library=library)
 
     return {**base, "verdict": verdict, "explanation": explanation, "suggested_fix": fix, "citations": citations,
             "flags": flags, "trace": trace, "raw_verdict": last_stated}

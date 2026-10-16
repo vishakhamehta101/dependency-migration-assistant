@@ -6,7 +6,7 @@ Asks the model about every usage the matcher flagged (from data/sample_matches.j
   G2 False alarms  4 calls whose notes concern things they do not use are never 'affected'
   G3 Honesty       every 'affected' has a verified citation; unconfirmed objects are never 'affected' and say so;
                    every shown fix is grounded
-  G4 Stability     two runs agree on at least 95% of verdicts
+  G4 Stability     two runs agree on at least 95% of the model-judged verdicts (D30: only documented changes reach the model)
   G5 Cost          reported only (time, retries, failures, swap)
   G6 Evidence rule (D29, added after the first run)  no 'review'-level usage is ever shown 'affected'
 The keys below were fixed before any model results existed.
@@ -85,10 +85,11 @@ def evaluate_gates(run1: list, run2: list | None = None) -> dict:
         gates["G4"] = {"passed": None, "failures": [], "summary": "second run not done"}
     else:
         second = {key_of(f): f["verdict"] for f in run2}
-        differ = [f"{key_of(f)}: {f['verdict']} then {second.get(key_of(f), 'missing')}" for f in run1 if second.get(key_of(f)) != f["verdict"]]
-        agreement = 1 - len(differ) / len(run1) if run1 else 0.0
+        judged = [f for f in run1 if f["status"] == "documented_change"]   # the only usages the model is asked about
+        differ = [f"{key_of(f)}: {f['verdict']} then {second.get(key_of(f), 'missing')}" for f in judged if second.get(key_of(f)) != f["verdict"]]
+        agreement = 1 - len(differ) / len(judged) if judged else 0.0
         gates["G4"] = {"passed": agreement >= STABILITY_MIN, "failures": differ,
-                       "summary": f"{agreement:.0%} of {len(run1)} verdicts agree between the two runs"}
+                       "summary": f"{agreement:.0%} of {len(judged)} model-judged verdicts agree between the two runs"}
     return gates
 
 
@@ -111,7 +112,8 @@ def swap_used_mb():
 
 def run_once(results: list, model, label: str):
     flagged = [r for r in results if r["status"] != "no_documented_change"]
-    print(f"\n--- {label}: {len(flagged)} usages go to the model ---", flush=True)
+    asked = sum(1 for r in flagged if r["status"] == "documented_change")
+    print(f"\n--- {label}: {len(flagged)} flagged usages; {asked} go to the model, {len(flagged) - asked} are reported as needs_review ---", flush=True)
     findings, started, calls_before = [], time.perf_counter(), len(model.stats)
     for index, result in enumerate(flagged, start=1):
         before = len(model.stats)
