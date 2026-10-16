@@ -21,6 +21,11 @@ Shortcuts taken for the student/prototype version of Module 1, what production w
 | 13 | Chunk | Code blocks longer than 150 words are split at a line break, which can cut an example in half | Split code on blank lines or function boundaries and repeat the introducing sentence on each piece | Make the splitter code-aware |
 | 14 | Retrieve | The index is deleted and rebuilt from scratch on every run | Incremental upsert keyed on chunk id plus a content hash, so only changed chunks are re-embedded | Store a hash in each payload and compare before embedding |
 | 15 | Retrieve | Qdrant host/port and the embedding model name are constants in `retrieve.py` | Read from environment variables or settings, with these as defaults | Add env-var overrides |
+| 16 | Retrieve | No Qdrant payload indexes on the fields we filter by (`version`, `category`, `section`) | Create payload indexes so filters stay fast at scale | Call `create_payload_index` for each filter field in `build_index` |
+| 17 | Retrieve | Retrieval quality is checked on 7 hand-written queries that were built from the wording of their target chunks | An evaluation set built from real migration PRs, scored with precision and recall | System 7 |
+| 18 | Retrieve | No relevance cutoff: semantic search always returns the nearest chunks, even for nonsense | A cutoff calibrated on labelled data | System 5 (matcher and reranker) |
+| 19 | Scan | Variable tracking is a heuristic: assignments, annotated parameters and `with ... as` targets. Not tracked: `self.df` across methods, tuple unpacking, loop variables, results of user-defined functions. Unresolved method calls are kept only if the library documents the method name | Real type inference (pyright or jedi) | Replace `is_library_object` with a type-aware resolver; the record format stays the same |
+| 20 | Scan | Only `.py` files are scanned, and the skipped-folder list is hardcoded | Jupyter notebooks included; skip list configurable | Extract code cells with `nbformat`; move `SKIP_DIRS` into settings |
 
 ## Dropped decisions
 

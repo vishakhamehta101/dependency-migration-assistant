@@ -9,5 +9,8 @@
   ],
   "skip_sections": [
     "Contributors"
+  ],
+  "import_names": [
+    "pandas"
   ]
 }
