@@ -17,7 +17,9 @@ import uuid
 from pathlib import Path
 
 from qdrant_client import QdrantClient
-from qdrant_client.models import Distance, PointStruct, VectorParams
+from qdrant_client.models import (
+    Distance, FieldCondition, Filter, IsNullCondition, MatchValue, PayloadField, PointStruct, VectorParams,
+)
 from rank_bm25 import BM25Okapi
 
 from ingest import load_settings
@@ -36,6 +38,10 @@ QDRANT_PORT = 6333
 EMBED_BATCH_SIZE = 32
 UPSERT_BATCH_SIZE = 128
 KEYWORD_SCROLL_BATCH = 256
+RRF_K = 60            # standard Reciprocal Rank Fusion constant
+CANDIDATE_POOL = 20   # results each searcher contributes before the two lists are fused
+BGE_QUERY_PREFIX = "Represent this sentence for searching relevant passages: "  # optional for BGE v1.5
+_MODEL_CACHE = {}     # model name -> loaded model; loaded once per process
 _KEYWORD_CACHE = {}  # collection name -> (BM25 index, chunks); built once per process
 
 
@@ -189,6 +195,110 @@ def keyword_search(query: str, library: str, top_k: int = 5, filters: dict | Non
         if len(results) == top_k:
             break
     return results
+
+
+def get_model():
+    """The embedding model, loaded once per process."""
+    if MODEL_NAME not in _MODEL_CACHE:
+        _MODEL_CACHE[MODEL_NAME] = load_model()
+    return _MODEL_CACHE[MODEL_NAME]
+
+
+def build_qdrant_filter(filters: dict | None):
+    """Turn {"version": "2.0.1", "category": "bug_fix"} into a Qdrant filter. A value of None matches missing/null."""
+    if not filters:
+        return None
+    conditions = []
+    for key, value in filters.items():
+        if value is None:
+            conditions.append(IsNullCondition(is_null=PayloadField(key=key)))
+        else:
+            conditions.append(FieldCondition(key=key, match=MatchValue(value=value)))
+    return Filter(must=conditions)
+
+
+def collection_ready(client, name: str) -> bool:
+    """True if Qdrant is reachable and the collection exists; otherwise logs why and returns False."""
+    try:
+        if not client.collection_exists(name):
+            logger.error("Collection '%s' not found — run retrieve.py to build the index first", name)
+            return False
+    except Exception as error:
+        logger.error("Cannot reach Qdrant at %s:%s (is the Docker container running?): %s",
+                     QDRANT_HOST, QDRANT_PORT, error)
+        return False
+    return True
+
+
+def semantic_search(query: str, library: str, top_k: int = 5, filters: dict | None = None,
+                    client=None, model=None, query_prefix: str = "") -> list:
+    """
+    Meaning-based search: finds chunks that say the same thing in different words.
+    Returns [{"rank": int, "score": float, "chunk": {...}}], best first.
+    """
+    if top_k <= 0 or not query.strip():
+        return []
+    name = collection_name({"library": library})
+    client = client or QdrantClient(host=QDRANT_HOST, port=QDRANT_PORT)
+    if not collection_ready(client, name):
+        return []
+
+    vector = (model or get_model()).encode([query_prefix + query], normalize_embeddings=True)[0].tolist()
+    try:
+        points = client.query_points(
+            collection_name=name, query=vector, limit=top_k,
+            query_filter=build_qdrant_filter(filters), with_payload=True,
+        ).points
+    except Exception as error:
+        logger.error("Semantic search failed: %s", error)
+        return []
+    return [{"rank": i, "score": float(point.score), "chunk": point.payload} for i, point in enumerate(points, start=1)]
+
+
+def reciprocal_rank_fusion(rankings: list, k: int = RRF_K) -> list:
+    """
+    Combine several ranked lists of ids (each best first) into one.
+    An id scores 1 / (k + position) in every list it appears in; the scores are added up.
+    Returns [(id, score)], best first. Ties go to the id with the better single position, then by id.
+    """
+    scores, best_position = {}, {}
+    for ranking in rankings:
+        for position, item in enumerate(ranking, start=1):
+            scores[item] = scores.get(item, 0.0) + 1.0 / (k + position)
+            best_position[item] = min(best_position.get(item, position), position)
+    return sorted(scores.items(), key=lambda pair: (-round(pair[1], 12), best_position[pair[0]], pair[0]))
+
+
+def search(query: str, library: str, top_k: int = 5, filters: dict | None = None,
+           candidate_pool: int = CANDIDATE_POOL, client=None, model=None) -> list:
+    """
+    Hybrid search: meaning-based and exact-word results, fused with Reciprocal Rank Fusion.
+    Returns [{"rank", "score", "chunk", "semantic_rank", "keyword_rank"}], best first.
+    `score` is the fused score (not comparable to cosine or BM25 scores); the two *_rank
+    fields show where each searcher placed the chunk (None = it did not return it).
+    """
+    if top_k <= 0 or not query.strip():
+        return []
+    client = client or QdrantClient(host=QDRANT_HOST, port=QDRANT_PORT)
+    if not collection_ready(client, collection_name({"library": library})):
+        return []  # reported once here, instead of once per searcher
+
+    semantic = semantic_search(query, library, top_k=candidate_pool, filters=filters, client=client, model=model)
+    keyword = keyword_search(query, library, top_k=candidate_pool, filters=filters, client=client)
+
+    chunk_by_id = {r["chunk"]["chunk_id"]: r["chunk"] for r in semantic + keyword}
+    semantic_rank = {r["chunk"]["chunk_id"]: r["rank"] for r in semantic}
+    keyword_rank = {r["chunk"]["chunk_id"]: r["rank"] for r in keyword}
+
+    fused = reciprocal_rank_fusion([
+        [r["chunk"]["chunk_id"] for r in semantic],
+        [r["chunk"]["chunk_id"] for r in keyword],
+    ])
+    return [
+        {"rank": i, "score": score, "chunk": chunk_by_id[chunk_id],
+         "semantic_rank": semantic_rank.get(chunk_id), "keyword_rank": keyword_rank.get(chunk_id)}
+        for i, (chunk_id, score) in enumerate(fused[:top_k], start=1)
+    ]
 
 
 if __name__ == "__main__":
