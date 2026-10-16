@@ -142,15 +142,15 @@ usage = {"file": "loader.py", "line": 9, "snippet": "df = df.append(extra)", "fu
          "resolved": True, "resolution": "tracked_variable", "kind": "call"}
 result = match.match_usage(usage, [{"rank": 1, "score": 0.03, "semantic_rank": 1, "keyword_rank": 1, "chunk": note}])
 honest = json.dumps({"verdict": "affected", "explanation": "DataFrame.append() was removed.", "suggested_fix": "Use concat() instead.",
-                     "citations": [{"chunk_id": note["chunk_id"], "quote": "Removed deprecated Series.append() , DataFrame.append()"}]})
+                     "citations": [{"note": 1, "quote": "Removed deprecated Series.append() , DataFrame.append()"}]})
 liar = json.dumps({"verdict": "affected", "explanation": "It is gone.", "suggested_fix": None,
-                   "citations": [{"chunk_id": note["chunk_id"], "quote": "append will be removed in version 9"}]})
+                   "citations": [{"note": 1, "quote": "append will be removed in version 9"}]})
 
 fake.reply, fake.posts = honest, []
 finding = explain.explain_usage(result, llm.OllamaModel("qwen2.5:3b", fake.url), "pandas")
 check("through the server, an honest answer becomes an 'affected' finding with a verified citation",
       finding["verdict"] == "affected" and finding["flags"] == [] and len(fake.posts) == 1
-      and note["chunk_id"] in fake.posts[0]["body"]["messages"][1]["content"])
+      and "Note 1" in fake.posts[0]["body"]["messages"][1]["content"] and note["text"] in fake.posts[0]["body"]["messages"][1]["content"])
 fake.reply, fake.posts = liar, []
 finding = explain.explain_usage(result, llm.OllamaModel("qwen2.5:3b", fake.url), "pandas")
 check("through the server, a lying answer is caught, retried once, then downgraded to 'unsure'",

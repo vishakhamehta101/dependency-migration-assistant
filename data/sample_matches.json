@@ -1,0 +1,1840 @@
+{
+  "library": "pandas",
+  "target": "samples/pandas1_sample",
+  "count": 24,
+  "results": [
+    {
+      "usage": {
+        "file": "cleaning.py",
+        "line": 5,
+        "snippet": "def clean(frame: DataFrame, path):",
+        "function": "DataFrame",
+        "resolved": true,
+        "resolution": "imported_name",
+        "kind": "reference",
+        "keywords": []
+      },
+      "status": "review",
+      "confidence": "high",
+      "matches": [
+        {
+          "evidence": "name_match",
+          "matched_keywords": [],
+          "score": 0.03076923076923077,
+          "hybrid_rank": 1,
+          "semantic_rank": 5,
+          "keyword_rank": 5,
+          "chunk": {
+            "chunk_id": "pandas-changelog_v2.0.0-19-25",
+            "text": "Deprecated DataFrame.backfill() in favor of DataFrame.bfill() ( GH 33396 )",
+            "source_type": "changelog",
+            "source_url": "https://pandas.pydata.org/pandas-docs/version/2.3/whatsnew/v2.0.0.html",
+            "library": "pandas",
+            "version": "2.0.0",
+            "section": "Deprecations",
+            "subsection": null,
+            "category": "deprecation",
+            "issue_refs": [
+              "GH 33396"
+            ],
+            "library_function": "DataFrame.backfill()"
+          },
+          "rank": 1
+        },
+        {
+          "evidence": "name_match",
+          "matched_keywords": [],
+          "score": 0.028790389395194696,
+          "hybrid_rank": 2,
+          "semantic_rank": 8,
+          "keyword_rank": 11,
+          "chunk": {
+            "chunk_id": "pandas-changelog_v2.0.0-20-161",
+            "text": "Enforced disallowing value_name argument in DataFrame.melt() to match an element in the DataFrame columns ( GH 35003 )",
+            "source_type": "changelog",
+            "source_url": "https://pandas.pydata.org/pandas-docs/version/2.3/whatsnew/v2.0.0.html",
+            "library": "pandas",
+            "version": "2.0.0",
+            "section": "Removal of prior version deprecations/changes",
+            "subsection": null,
+            "category": "breaking_change",
+            "issue_refs": [
+              "GH 35003"
+            ],
+            "library_function": "DataFrame.melt()"
+          },
+          "rank": 2
+        },
+        {
+          "evidence": "name_match",
+          "matched_keywords": [],
+          "score": 0.028665028665028666,
+          "hybrid_rank": 3,
+          "semantic_rank": 14,
+          "keyword_rank": 6,
+          "chunk": {
+            "chunk_id": "pandas-changelog_v2.0.0-19-24",
+            "text": "Deprecated DataFrame.pad() in favor of DataFrame.ffill() ( GH 33396 )",
+            "source_type": "changelog",
+            "source_url": "https://pandas.pydata.org/pandas-docs/version/2.3/whatsnew/v2.0.0.html",
+            "library": "pandas",
+            "version": "2.0.0",
+            "section": "Deprecations",
+            "subsection": null,
+            "category": "deprecation",
+            "issue_refs": [
+              "GH 33396"
+            ],
+            "library_function": "DataFrame.pad()"
+          },
+          "rank": 3
+        },
+        {
+          "evidence": "name_match",
+          "matched_keywords": [],
+          "score": 0.027809742999616416,
+          "hybrid_rank": 4,
+          "semantic_rank": 6,
+          "keyword_rank": 19,
+          "chunk": {
+            "chunk_id": "pandas-changelog_v2.0.0-20-32",
+            "text": "Removed deprecated argument col_space in DataFrame.to_latex() ( GH 47970 )",
+            "source_type": "changelog",
+            "source_url": "https://pandas.pydata.org/pandas-docs/version/2.3/whatsnew/v2.0.0.html",
+            "library": "pandas",
+            "version": "2.0.0",
+            "section": "Removal of prior version deprecations/changes",
+            "subsection": null,
+            "category": "breaking_change",
+            "issue_refs": [
+              "GH 47970"
+            ],
+            "library_function": "DataFrame.to_latex()"
+          },
+          "rank": 4
+        },
+        {
+          "evidence": "name_match",
+          "matched_keywords": [],
+          "score": 0.027272727272727275,
+          "hybrid_rank": 5,
+          "semantic_rank": 17,
+          "keyword_rank": 10,
+          "chunk": {
+            "chunk_id": "pandas-changelog_v2.0.0-20-73",
+            "text": "Removed errors keyword from DataFrame.where() , Series.where() , DataFrame.mask() and Series.mask() ( GH 47728 )",
+            "source_type": "changelog",
+            "source_url": "https://pandas.pydata.org/pandas-docs/version/2.3/whatsnew/v2.0.0.html",
+            "library": "pandas",
+            "version": "2.0.0",
+            "section": "Removal of prior version deprecations/changes",
+            "subsection": null,
+            "category": "breaking_change",
+            "issue_refs": [
+              "GH 47728"
+            ],
+            "library_function": "DataFrame.where()"
+          },
+          "rank": 5
+        }
+      ]
+    },
+    {
+      "usage": {
+        "file": "cleaning.py",
+        "line": 6,
+        "snippet": "raw = rc(path)",
+        "function": "read_csv",
+        "resolved": true,
+        "resolution": "imported_name",
+        "kind": "call",
+        "keywords": []
+      },
+      "status": "review",
+      "confidence": "high",
+      "matches": [
+        {
+          "evidence": "name_match",
+          "matched_keywords": [],
+          "score": 0.032018442622950824,
+          "hybrid_rank": 1,
+          "semantic_rank": 1,
+          "keyword_rank": 4,
+          "chunk": {
+            "chunk_id": "pandas-changelog_v2.0.0-20-98",
+            "text": "Disallow passing non-keyword arguments to read_csv() except filepath_or_buffer ( GH 41485 )",
+            "source_type": "changelog",
+            "source_url": "https://pandas.pydata.org/pandas-docs/version/2.3/whatsnew/v2.0.0.html",
+            "library": "pandas",
+            "version": "2.0.0",
+            "section": "Removal of prior version deprecations/changes",
+            "subsection": null,
+            "category": "breaking_change",
+            "issue_refs": [
+              "GH 41485"
+            ],
+            "library_function": null
+          },
+          "rank": 1
+        },
+        {
+          "evidence": "name_match",
+          "matched_keywords": [],
+          "score": 0.03177805800756621,
+          "hybrid_rank": 2,
+          "semantic_rank": 5,
+          "keyword_rank": 1,
+          "chunk": {
+            "chunk_id": "pandas-changelog_v2.0.0-20-72",
+            "text": "Remove keyword mangle_dupe_cols from read_csv() and read_table() ( GH 48137 )",
+            "source_type": "changelog",
+            "source_url": "https://pandas.pydata.org/pandas-docs/version/2.3/whatsnew/v2.0.0.html",
+            "library": "pandas",
+            "version": "2.0.0",
+            "section": "Removal of prior version deprecations/changes",
+            "subsection": null,
+            "category": "breaking_change",
+            "issue_refs": [
+              "GH 48137"
+            ],
+            "library_function": null
+          },
+          "rank": 2
+        },
+        {
+          "evidence": "name_match",
+          "matched_keywords": [],
+          "score": 0.031754032258064516,
+          "hybrid_rank": 3,
+          "semantic_rank": 4,
+          "keyword_rank": 2,
+          "chunk": {
+            "chunk_id": "pandas-changelog_v2.0.0-18-29",
+            "text": "Added \"None\" to default na_values in read_csv() ( GH 50286 )",
+            "source_type": "changelog",
+            "source_url": "https://pandas.pydata.org/pandas-docs/version/2.3/whatsnew/v2.0.0.html",
+            "library": "pandas",
+            "version": "2.0.0",
+            "section": "Backwards incompatible API changes",
+            "subsection": "Other API changes",
+            "category": "breaking_change",
+            "issue_refs": [
+              "GH 50286"
+            ],
+            "library_function": null
+          },
+          "rank": 3
+        },
+        {
+          "evidence": "name_match",
+          "matched_keywords": [],
+          "score": 0.031024531024531024,
+          "hybrid_rank": 4,
+          "semantic_rank": 6,
+          "keyword_rank": 3,
+          "chunk": {
+            "chunk_id": "pandas-changelog_v2.0.0-19-12",
+            "text": "Deprecated argument date_parser in read_csv() , read_table() , read_fwf() , and read_excel() in favour of date_format ( GH 50601 )",
+            "source_type": "changelog",
+            "source_url": "https://pandas.pydata.org/pandas-docs/version/2.3/whatsnew/v2.0.0.html",
+            "library": "pandas",
+            "version": "2.0.0",
+            "section": "Deprecations",
+            "subsection": null,
+            "category": "deprecation",
+            "issue_refs": [
+              "GH 50601"
+            ],
+            "library_function": null
+          },
+          "rank": 4
+        },
+        {
+          "evidence": "name_match",
+          "matched_keywords": [],
+          "score": 0.030834914611005692,
+          "hybrid_rank": 5,
+          "semantic_rank": 2,
+          "keyword_rank": 8,
+          "chunk": {
+            "chunk_id": "pandas-changelog_v2.0.0-20-149",
+            "text": "Enforced disallowing using usecols with out of bounds indices for read_csv with engine=\"c\" ( GH 25623 )",
+            "source_type": "changelog",
+            "source_url": "https://pandas.pydata.org/pandas-docs/version/2.3/whatsnew/v2.0.0.html",
+            "library": "pandas",
+            "version": "2.0.0",
+            "section": "Removal of prior version deprecations/changes",
+            "subsection": null,
+            "category": "breaking_change",
+            "issue_refs": [
+              "GH 25623"
+            ],
+            "library_function": null
+          },
+          "rank": 5
+        }
+      ]
+    },
+    {
+      "usage": {
+        "file": "cleaning.py",
+        "line": 7,
+        "snippet": "cols = raw.columns.tolist()",
+        "function": "tolist",
+        "resolved": true,
+        "resolution": "tracked_variable",
+        "kind": "call",
+        "keywords": []
+      },
+      "status": "no_documented_change",
+      "confidence": "high",
+      "matches": []
+    },
+    {
+      "usage": {
+        "file": "cleaning.py",
+        "line": 8,
+        "snippet": "cols.append(\"new\")",
+        "function": "append",
+        "resolved": false,
+        "resolution": "unknown",
+        "kind": "call",
+        "keywords": []
+      },
+      "status": "documented_change",
+      "confidence": "low",
+      "matches": [
+        {
+          "evidence": "removed",
+          "matched_keywords": [],
+          "score": 0.032266458495966696,
+          "hybrid_rank": 1,
+          "semantic_rank": 3,
+          "keyword_rank": 1,
+          "chunk": {
+            "chunk_id": "pandas-changelog_v2.0.0-20-22",
+            "text": "Removed deprecated Series.append() , DataFrame.append() , use concat() instead ( GH 35407 )",
+            "source_type": "changelog",
+            "source_url": "https://pandas.pydata.org/pandas-docs/version/2.3/whatsnew/v2.0.0.html",
+            "library": "pandas",
+            "version": "2.0.0",
+            "section": "Removal of prior version deprecations/changes",
+            "subsection": null,
+            "category": "breaking_change",
+            "issue_refs": [
+              "GH 35407"
+            ],
+            "library_function": "Series.append()"
+          },
+          "rank": 1
+        }
+      ]
+    },
+    {
+      "usage": {
+        "file": "cleaning.py",
+        "line": 9,
+        "snippet": "counts = frame.groupby(\"kind\").agg(\"sum\")",
+        "function": "agg",
+        "resolved": true,
+        "resolution": "tracked_variable",
+        "kind": "call",
+        "keywords": []
+      },
+      "status": "no_documented_change",
+      "confidence": "high",
+      "matches": []
+    },
+    {
+      "usage": {
+        "file": "cleaning.py",
+        "line": 9,
+        "snippet": "counts = frame.groupby(\"kind\").agg(\"sum\")",
+        "function": "groupby",
+        "resolved": true,
+        "resolution": "tracked_variable",
+        "kind": "call",
+        "keywords": []
+      },
+      "status": "review",
+      "confidence": "high",
+      "matches": [
+        {
+          "evidence": "name_match",
+          "matched_keywords": [],
+          "score": 0.031544957774465976,
+          "hybrid_rank": 3,
+          "semantic_rank": 6,
+          "keyword_rank": 1,
+          "chunk": {
+            "chunk_id": "pandas-changelog_v2.0.0-20-47",
+            "text": "Remove argument squeeze from DataFrame.groupby() and Series.groupby() ( GH 32380 )",
+            "source_type": "changelog",
+            "source_url": "https://pandas.pydata.org/pandas-docs/version/2.3/whatsnew/v2.0.0.html",
+            "library": "pandas",
+            "version": "2.0.0",
+            "section": "Removal of prior version deprecations/changes",
+            "subsection": null,
+            "category": "breaking_change",
+            "issue_refs": [
+              "GH 32380"
+            ],
+            "library_function": "DataFrame.groupby()"
+          },
+          "rank": 1
+        },
+        {
+          "evidence": "name_match",
+          "matched_keywords": [],
+          "score": 0.030776515151515152,
+          "hybrid_rank": 5,
+          "semantic_rank": 4,
+          "keyword_rank": 6,
+          "chunk": {
+            "chunk_id": "pandas-changelog_v2.0.0-20-217",
+            "text": "Enforced deprecation of silently dropping nuisance columns in groupby and resample operations when numeric_only=False ( GH 41475 )",
+            "source_type": "changelog",
+            "source_url": "https://pandas.pydata.org/pandas-docs/version/2.3/whatsnew/v2.0.0.html",
+            "library": "pandas",
+            "version": "2.0.0",
+            "section": "Removal of prior version deprecations/changes",
+            "subsection": null,
+            "category": "breaking_change",
+            "issue_refs": [
+              "GH 41475"
+            ],
+            "library_function": null
+          },
+          "rank": 2
+        },
+        {
+          "evidence": "name_match",
+          "matched_keywords": [],
+          "score": 0.03076923076923077,
+          "hybrid_rank": 6,
+          "semantic_rank": 5,
+          "keyword_rank": 5,
+          "chunk": {
+            "chunk_id": "pandas-changelog_v2.0.0-20-119",
+            "text": "Removed the level keyword in DataFrame and Series aggregations; use groupby instead ( GH 39983 )",
+            "source_type": "changelog",
+            "source_url": "https://pandas.pydata.org/pandas-docs/version/2.3/whatsnew/v2.0.0.html",
+            "library": "pandas",
+            "version": "2.0.0",
+            "section": "Removal of prior version deprecations/changes",
+            "subsection": null,
+            "category": "breaking_change",
+            "issue_refs": [
+              "GH 39983"
+            ],
+            "library_function": null
+          },
+          "rank": 3
+        },
+        {
+          "evidence": "name_match",
+          "matched_keywords": [],
+          "score": 0.029850746268656716,
+          "hybrid_rank": 7,
+          "semantic_rank": 7,
+          "keyword_rank": 7,
+          "chunk": {
+            "chunk_id": "pandas-changelog_v2.0.0-20-223",
+            "text": "When providing a list of columns of length one to DataFrame.groupby() , the keys that are returned by iterating over the resulting DataFrameGroupBy object will now be tuples of length one ( GH 47761 )",
+            "source_type": "changelog",
+            "source_url": "https://pandas.pydata.org/pandas-docs/version/2.3/whatsnew/v2.0.0.html",
+            "library": "pandas",
+            "version": "2.0.0",
+            "section": "Removal of prior version deprecations/changes",
+            "subsection": null,
+            "category": "breaking_change",
+            "issue_refs": [
+              "GH 47761"
+            ],
+            "library_function": "DataFrame.groupby()"
+          },
+          "rank": 4
+        }
+      ]
+    },
+    {
+      "usage": {
+        "file": "cleaning.py",
+        "line": 10,
+        "snippet": "ok = pat.is_scalar(3)",
+        "function": "api.types.is_scalar",
+        "resolved": true,
+        "resolution": "module",
+        "kind": "call",
+        "keywords": []
+      },
+      "status": "no_documented_change",
+      "confidence": "high",
+      "matches": []
+    },
+    {
+      "usage": {
+        "file": "cleaning.py",
+        "line": 14,
+        "snippet": "def to_rows(df: DataFrame):",
+        "function": "DataFrame",
+        "resolved": true,
+        "resolution": "imported_name",
+        "kind": "reference",
+        "keywords": []
+      },
+      "status": "review",
+      "confidence": "high",
+      "matches": [
+        {
+          "evidence": "name_match",
+          "matched_keywords": [],
+          "score": 0.03076923076923077,
+          "hybrid_rank": 1,
+          "semantic_rank": 5,
+          "keyword_rank": 5,
+          "chunk": {
+            "chunk_id": "pandas-changelog_v2.0.0-19-25",
+            "text": "Deprecated DataFrame.backfill() in favor of DataFrame.bfill() ( GH 33396 )",
+            "source_type": "changelog",
+            "source_url": "https://pandas.pydata.org/pandas-docs/version/2.3/whatsnew/v2.0.0.html",
+            "library": "pandas",
+            "version": "2.0.0",
+            "section": "Deprecations",
+            "subsection": null,
+            "category": "deprecation",
+            "issue_refs": [
+              "GH 33396"
+            ],
+            "library_function": "DataFrame.backfill()"
+          },
+          "rank": 1
+        },
+        {
+          "evidence": "name_match",
+          "matched_keywords": [],
+          "score": 0.028790389395194696,
+          "hybrid_rank": 2,
+          "semantic_rank": 8,
+          "keyword_rank": 11,
+          "chunk": {
+            "chunk_id": "pandas-changelog_v2.0.0-20-161",
+            "text": "Enforced disallowing value_name argument in DataFrame.melt() to match an element in the DataFrame columns ( GH 35003 )",
+            "source_type": "changelog",
+            "source_url": "https://pandas.pydata.org/pandas-docs/version/2.3/whatsnew/v2.0.0.html",
+            "library": "pandas",
+            "version": "2.0.0",
+            "section": "Removal of prior version deprecations/changes",
+            "subsection": null,
+            "category": "breaking_change",
+            "issue_refs": [
+              "GH 35003"
+            ],
+            "library_function": "DataFrame.melt()"
+          },
+          "rank": 2
+        },
+        {
+          "evidence": "name_match",
+          "matched_keywords": [],
+          "score": 0.028665028665028666,
+          "hybrid_rank": 3,
+          "semantic_rank": 14,
+          "keyword_rank": 6,
+          "chunk": {
+            "chunk_id": "pandas-changelog_v2.0.0-19-24",
+            "text": "Deprecated DataFrame.pad() in favor of DataFrame.ffill() ( GH 33396 )",
+            "source_type": "changelog",
+            "source_url": "https://pandas.pydata.org/pandas-docs/version/2.3/whatsnew/v2.0.0.html",
+            "library": "pandas",
+            "version": "2.0.0",
+            "section": "Deprecations",
+            "subsection": null,
+            "category": "deprecation",
+            "issue_refs": [
+              "GH 33396"
+            ],
+            "library_function": "DataFrame.pad()"
+          },
+          "rank": 3
+        },
+        {
+          "evidence": "name_match",
+          "matched_keywords": [],
+          "score": 0.027809742999616416,
+          "hybrid_rank": 4,
+          "semantic_rank": 6,
+          "keyword_rank": 19,
+          "chunk": {
+            "chunk_id": "pandas-changelog_v2.0.0-20-32",
+            "text": "Removed deprecated argument col_space in DataFrame.to_latex() ( GH 47970 )",
+            "source_type": "changelog",
+            "source_url": "https://pandas.pydata.org/pandas-docs/version/2.3/whatsnew/v2.0.0.html",
+            "library": "pandas",
+            "version": "2.0.0",
+            "section": "Removal of prior version deprecations/changes",
+            "subsection": null,
+            "category": "breaking_change",
+            "issue_refs": [
+              "GH 47970"
+            ],
+            "library_function": "DataFrame.to_latex()"
+          },
+          "rank": 4
+        },
+        {
+          "evidence": "name_match",
+          "matched_keywords": [],
+          "score": 0.027272727272727275,
+          "hybrid_rank": 5,
+          "semantic_rank": 17,
+          "keyword_rank": 10,
+          "chunk": {
+            "chunk_id": "pandas-changelog_v2.0.0-20-73",
+            "text": "Removed errors keyword from DataFrame.where() , Series.where() , DataFrame.mask() and Series.mask() ( GH 47728 )",
+            "source_type": "changelog",
+            "source_url": "https://pandas.pydata.org/pandas-docs/version/2.3/whatsnew/v2.0.0.html",
+            "library": "pandas",
+            "version": "2.0.0",
+            "section": "Removal of prior version deprecations/changes",
+            "subsection": null,
+            "category": "breaking_change",
+            "issue_refs": [
+              "GH 47728"
+            ],
+            "library_function": "DataFrame.where()"
+          },
+          "rank": 5
+        }
+      ]
+    },
+    {
+      "usage": {
+        "file": "cleaning.py",
+        "line": 15,
+        "snippet": "rows = df.to_dict()",
+        "function": "to_dict",
+        "resolved": true,
+        "resolution": "tracked_variable",
+        "kind": "call",
+        "keywords": []
+      },
+      "status": "review",
+      "confidence": "high",
+      "matches": [
+        {
+          "evidence": "name_match",
+          "matched_keywords": [],
+          "score": 0.03278688524590164,
+          "hybrid_rank": 1,
+          "semantic_rank": 1,
+          "keyword_rank": 1,
+          "chunk": {
+            "chunk_id": "pandas-changelog_v2.0.0-20-131",
+            "text": "Disallow passing abbreviations for orient in DataFrame.to_dict() ( GH 32516 )",
+            "source_type": "changelog",
+            "source_url": "https://pandas.pydata.org/pandas-docs/version/2.3/whatsnew/v2.0.0.html",
+            "library": "pandas",
+            "version": "2.0.0",
+            "section": "Removal of prior version deprecations/changes",
+            "subsection": null,
+            "category": "breaking_change",
+            "issue_refs": [
+              "GH 32516"
+            ],
+            "library_function": "DataFrame.to_dict()"
+          },
+          "rank": 1
+        }
+      ]
+    },
+    {
+      "usage": {
+        "file": "cleaning.py",
+        "line": 16,
+        "snippet": "rows.append(1)",
+        "function": "append",
+        "resolved": false,
+        "resolution": "unknown",
+        "kind": "call",
+        "keywords": []
+      },
+      "status": "documented_change",
+      "confidence": "low",
+      "matches": [
+        {
+          "evidence": "removed",
+          "matched_keywords": [],
+          "score": 0.032266458495966696,
+          "hybrid_rank": 1,
+          "semantic_rank": 3,
+          "keyword_rank": 1,
+          "chunk": {
+            "chunk_id": "pandas-changelog_v2.0.0-20-22",
+            "text": "Removed deprecated Series.append() , DataFrame.append() , use concat() instead ( GH 35407 )",
+            "source_type": "changelog",
+            "source_url": "https://pandas.pydata.org/pandas-docs/version/2.3/whatsnew/v2.0.0.html",
+            "library": "pandas",
+            "version": "2.0.0",
+            "section": "Removal of prior version deprecations/changes",
+            "subsection": null,
+            "category": "breaking_change",
+            "issue_refs": [
+              "GH 35407"
+            ],
+            "library_function": "Series.append()"
+          },
+          "rank": 1
+        }
+      ]
+    },
+    {
+      "usage": {
+        "file": "io_tools.py",
+        "line": 5,
+        "snippet": "with pd.ExcelWriter(path) as writer:",
+        "function": "ExcelWriter",
+        "resolved": true,
+        "resolution": "module",
+        "kind": "call",
+        "keywords": []
+      },
+      "status": "review",
+      "confidence": "high",
+      "matches": [
+        {
+          "evidence": "name_match",
+          "matched_keywords": [],
+          "score": 0.03252247488101534,
+          "hybrid_rank": 1,
+          "semantic_rank": 2,
+          "keyword_rank": 1,
+          "chunk": {
+            "chunk_id": "pandas-changelog_v2.0.0-20-224",
+            "text": "Removed deprecated methods ExcelWriter.write_cells() , ExcelWriter.save() , ExcelWriter.cur_sheet() , ExcelWriter.handles() , ExcelWriter.path() ( GH 45795 )",
+            "source_type": "changelog",
+            "source_url": "https://pandas.pydata.org/pandas-docs/version/2.3/whatsnew/v2.0.0.html",
+            "library": "pandas",
+            "version": "2.0.0",
+            "section": "Removal of prior version deprecations/changes",
+            "subsection": null,
+            "category": "breaking_change",
+            "issue_refs": [
+              "GH 45795"
+            ],
+            "library_function": "ExcelWriter.write_cells()"
+          },
+          "rank": 1
+        },
+        {
+          "evidence": "name_match",
+          "matched_keywords": [],
+          "score": 0.032266458495966696,
+          "hybrid_rank": 2,
+          "semantic_rank": 1,
+          "keyword_rank": 3,
+          "chunk": {
+            "chunk_id": "pandas-changelog_v2.0.0-20-225",
+            "text": "The ExcelWriter attribute book can no longer be set; it is still available to be accessed and mutated ( GH 48943 )",
+            "source_type": "changelog",
+            "source_url": "https://pandas.pydata.org/pandas-docs/version/2.3/whatsnew/v2.0.0.html",
+            "library": "pandas",
+            "version": "2.0.0",
+            "section": "Removal of prior version deprecations/changes",
+            "subsection": null,
+            "category": "breaking_change",
+            "issue_refs": [
+              "GH 48943"
+            ],
+            "library_function": null
+          },
+          "rank": 2
+        },
+        {
+          "evidence": "name_match",
+          "matched_keywords": [],
+          "score": 0.03200204813108039,
+          "hybrid_rank": 3,
+          "semantic_rank": 3,
+          "keyword_rank": 2,
+          "chunk": {
+            "chunk_id": "pandas-changelog_v2.0.0-20-150",
+            "text": "Enforced disallowing the use of **kwargs in ExcelWriter ; use the keyword argument engine_kwargs instead ( GH 40430 )",
+            "source_type": "changelog",
+            "source_url": "https://pandas.pydata.org/pandas-docs/version/2.3/whatsnew/v2.0.0.html",
+            "library": "pandas",
+            "version": "2.0.0",
+            "section": "Removal of prior version deprecations/changes",
+            "subsection": null,
+            "category": "breaking_change",
+            "issue_refs": [
+              "GH 40430"
+            ],
+            "library_function": null
+          },
+          "rank": 3
+        }
+      ]
+    },
+    {
+      "usage": {
+        "file": "io_tools.py",
+        "line": 6,
+        "snippet": "df.to_excel(writer)",
+        "function": "to_excel",
+        "resolved": false,
+        "resolution": "unknown",
+        "kind": "call",
+        "keywords": []
+      },
+      "status": "review",
+      "confidence": "low",
+      "matches": [
+        {
+          "evidence": "name_match",
+          "matched_keywords": [],
+          "score": 0.03278688524590164,
+          "hybrid_rank": 1,
+          "semantic_rank": 1,
+          "keyword_rank": 1,
+          "chunk": {
+            "chunk_id": "pandas-changelog_v2.0.0-20-52",
+            "text": "Removed arguments verbose and encoding from DataFrame.to_excel() and Series.to_excel() ( GH 47912 )",
+            "source_type": "changelog",
+            "source_url": "https://pandas.pydata.org/pandas-docs/version/2.3/whatsnew/v2.0.0.html",
+            "library": "pandas",
+            "version": "2.0.0",
+            "section": "Removal of prior version deprecations/changes",
+            "subsection": null,
+            "category": "breaking_change",
+            "issue_refs": [
+              "GH 47912"
+            ],
+            "library_function": "DataFrame.to_excel()"
+          },
+          "rank": 1
+        }
+      ]
+    },
+    {
+      "usage": {
+        "file": "io_tools.py",
+        "line": 7,
+        "snippet": "writer.save()",
+        "function": "save",
+        "resolved": true,
+        "resolution": "tracked_variable",
+        "kind": "call",
+        "keywords": []
+      },
+      "status": "documented_change",
+      "confidence": "high",
+      "matches": [
+        {
+          "evidence": "removed",
+          "matched_keywords": [],
+          "score": 0.02921395544346364,
+          "hybrid_rank": 1,
+          "semantic_rank": 18,
+          "keyword_rank": 1,
+          "chunk": {
+            "chunk_id": "pandas-changelog_v2.0.0-20-224",
+            "text": "Removed deprecated methods ExcelWriter.write_cells() , ExcelWriter.save() , ExcelWriter.cur_sheet() , ExcelWriter.handles() , ExcelWriter.path() ( GH 45795 )",
+            "source_type": "changelog",
+            "source_url": "https://pandas.pydata.org/pandas-docs/version/2.3/whatsnew/v2.0.0.html",
+            "library": "pandas",
+            "version": "2.0.0",
+            "section": "Removal of prior version deprecations/changes",
+            "subsection": null,
+            "category": "breaking_change",
+            "issue_refs": [
+              "GH 45795"
+            ],
+            "library_function": "ExcelWriter.write_cells()"
+          },
+          "rank": 1
+        }
+      ]
+    },
+    {
+      "usage": {
+        "file": "io_tools.py",
+        "line": 8,
+        "snippet": "pd.options.mode.chained_assignment = None",
+        "function": "options.mode.chained_assignment",
+        "resolved": true,
+        "resolution": "module",
+        "kind": "reference",
+        "keywords": []
+      },
+      "status": "no_documented_change",
+      "confidence": "high",
+      "matches": []
+    },
+    {
+      "usage": {
+        "file": "io_tools.py",
+        "line": 9,
+        "snippet": "idx = pd.Int64Index([1, 2])",
+        "function": "Int64Index",
+        "resolved": true,
+        "resolution": "module",
+        "kind": "call",
+        "keywords": []
+      },
+      "status": "documented_change",
+      "confidence": "high",
+      "matches": [
+        {
+          "evidence": "removed",
+          "matched_keywords": [],
+          "score": 0.03252247488101534,
+          "hybrid_rank": 1,
+          "semantic_rank": 2,
+          "keyword_rank": 1,
+          "chunk": {
+            "chunk_id": "pandas-changelog_v2.0.0-20-00",
+            "text": "Removed Int64Index , UInt64Index and Float64Index . See also here for more information ( GH 42717 )",
+            "source_type": "changelog",
+            "source_url": "https://pandas.pydata.org/pandas-docs/version/2.3/whatsnew/v2.0.0.html",
+            "library": "pandas",
+            "version": "2.0.0",
+            "section": "Removal of prior version deprecations/changes",
+            "subsection": null,
+            "category": "breaking_change",
+            "issue_refs": [
+              "GH 42717"
+            ],
+            "library_function": null
+          },
+          "rank": 1
+        },
+        {
+          "evidence": "name_match",
+          "matched_keywords": [],
+          "score": 0.03128054740957967,
+          "hybrid_rank": 2,
+          "semantic_rank": 6,
+          "keyword_rank": 2,
+          "chunk": {
+            "chunk_id": "pandas-changelog_v2.0.0-18-25",
+            "text": "read_stata() with parameter index_col set to None (the default) will now set the index on the returned DataFrame to a RangeIndex instead of a Int64Index ( GH 49745 )",
+            "source_type": "changelog",
+            "source_url": "https://pandas.pydata.org/pandas-docs/version/2.3/whatsnew/v2.0.0.html",
+            "library": "pandas",
+            "version": "2.0.0",
+            "section": "Backwards incompatible API changes",
+            "subsection": "Other API changes",
+            "category": "breaking_change",
+            "issue_refs": [
+              "GH 49745"
+            ],
+            "library_function": null
+          },
+          "rank": 2
+        },
+        {
+          "evidence": "name_match",
+          "matched_keywords": [],
+          "score": 0.03125763125763126,
+          "hybrid_rank": 3,
+          "semantic_rank": 5,
+          "keyword_rank": 3,
+          "chunk": {
+            "chunk_id": "pandas-changelog_v2.0.0-18-17",
+            "text": "pandas.testing.assert_index_equal() with parameter exact=\"equiv\" now considers two indexes equal when both are either a RangeIndex or Index with an int64 dtype. Previously it meant either a RangeIndex or a Int64Index ( GH 51098 )",
+            "source_type": "changelog",
+            "source_url": "https://pandas.pydata.org/pandas-docs/version/2.3/whatsnew/v2.0.0.html",
+            "library": "pandas",
+            "version": "2.0.0",
+            "section": "Backwards incompatible API changes",
+            "subsection": "Other API changes",
+            "category": "breaking_change",
+            "issue_refs": [
+              "GH 51098"
+            ],
+            "library_function": "testing.assert_index_equal()"
+          },
+          "rank": 3
+        }
+      ]
+    },
+    {
+      "usage": {
+        "file": "io_tools.py",
+        "line": 10,
+        "snippet": "return isinstance(idx, pd.Int64Index)",
+        "function": "Int64Index",
+        "resolved": true,
+        "resolution": "module",
+        "kind": "reference",
+        "keywords": []
+      },
+      "status": "documented_change",
+      "confidence": "high",
+      "matches": [
+        {
+          "evidence": "removed",
+          "matched_keywords": [],
+          "score": 0.03252247488101534,
+          "hybrid_rank": 1,
+          "semantic_rank": 2,
+          "keyword_rank": 1,
+          "chunk": {
+            "chunk_id": "pandas-changelog_v2.0.0-20-00",
+            "text": "Removed Int64Index , UInt64Index and Float64Index . See also here for more information ( GH 42717 )",
+            "source_type": "changelog",
+            "source_url": "https://pandas.pydata.org/pandas-docs/version/2.3/whatsnew/v2.0.0.html",
+            "library": "pandas",
+            "version": "2.0.0",
+            "section": "Removal of prior version deprecations/changes",
+            "subsection": null,
+            "category": "breaking_change",
+            "issue_refs": [
+              "GH 42717"
+            ],
+            "library_function": null
+          },
+          "rank": 1
+        },
+        {
+          "evidence": "name_match",
+          "matched_keywords": [],
+          "score": 0.03128054740957967,
+          "hybrid_rank": 2,
+          "semantic_rank": 6,
+          "keyword_rank": 2,
+          "chunk": {
+            "chunk_id": "pandas-changelog_v2.0.0-18-25",
+            "text": "read_stata() with parameter index_col set to None (the default) will now set the index on the returned DataFrame to a RangeIndex instead of a Int64Index ( GH 49745 )",
+            "source_type": "changelog",
+            "source_url": "https://pandas.pydata.org/pandas-docs/version/2.3/whatsnew/v2.0.0.html",
+            "library": "pandas",
+            "version": "2.0.0",
+            "section": "Backwards incompatible API changes",
+            "subsection": "Other API changes",
+            "category": "breaking_change",
+            "issue_refs": [
+              "GH 49745"
+            ],
+            "library_function": null
+          },
+          "rank": 2
+        },
+        {
+          "evidence": "name_match",
+          "matched_keywords": [],
+          "score": 0.03125763125763126,
+          "hybrid_rank": 3,
+          "semantic_rank": 5,
+          "keyword_rank": 3,
+          "chunk": {
+            "chunk_id": "pandas-changelog_v2.0.0-18-17",
+            "text": "pandas.testing.assert_index_equal() with parameter exact=\"equiv\" now considers two indexes equal when both are either a RangeIndex or Index with an int64 dtype. Previously it meant either a RangeIndex or a Int64Index ( GH 51098 )",
+            "source_type": "changelog",
+            "source_url": "https://pandas.pydata.org/pandas-docs/version/2.3/whatsnew/v2.0.0.html",
+            "library": "pandas",
+            "version": "2.0.0",
+            "section": "Backwards incompatible API changes",
+            "subsection": "Other API changes",
+            "category": "breaking_change",
+            "issue_refs": [
+              "GH 51098"
+            ],
+            "library_function": "testing.assert_index_equal()"
+          },
+          "rank": 3
+        }
+      ]
+    },
+    {
+      "usage": {
+        "file": "legacy_args.py",
+        "line": 5,
+        "snippet": "data = pd.read_csv(path, error_bad_lines=False)",
+        "function": "read_csv",
+        "resolved": true,
+        "resolution": "module",
+        "kind": "call",
+        "keywords": [
+          "error_bad_lines"
+        ]
+      },
+      "status": "documented_change",
+      "confidence": "high",
+      "matches": [
+        {
+          "evidence": "keyword_match",
+          "matched_keywords": [
+            "error_bad_lines"
+          ],
+          "score": 0.03278688524590164,
+          "hybrid_rank": 1,
+          "semantic_rank": 1,
+          "keyword_rank": 1,
+          "chunk": {
+            "chunk_id": "pandas-changelog_v2.0.0-20-64",
+            "text": "Removed arguments prefix , squeeze , error_bad_lines and warn_bad_lines from read_csv() ( GH 40413 , GH 43427 )",
+            "source_type": "changelog",
+            "source_url": "https://pandas.pydata.org/pandas-docs/version/2.3/whatsnew/v2.0.0.html",
+            "library": "pandas",
+            "version": "2.0.0",
+            "section": "Removal of prior version deprecations/changes",
+            "subsection": null,
+            "category": "breaking_change",
+            "issue_refs": [
+              "GH 40413",
+              "GH 43427"
+            ],
+            "library_function": null
+          },
+          "rank": 1
+        },
+        {
+          "evidence": "name_match",
+          "matched_keywords": [],
+          "score": 0.0315136476426799,
+          "hybrid_rank": 2,
+          "semantic_rank": 2,
+          "keyword_rank": 5,
+          "chunk": {
+            "chunk_id": "pandas-changelog_v2.0.0-20-98",
+            "text": "Disallow passing non-keyword arguments to read_csv() except filepath_or_buffer ( GH 41485 )",
+            "source_type": "changelog",
+            "source_url": "https://pandas.pydata.org/pandas-docs/version/2.3/whatsnew/v2.0.0.html",
+            "library": "pandas",
+            "version": "2.0.0",
+            "section": "Removal of prior version deprecations/changes",
+            "subsection": null,
+            "category": "breaking_change",
+            "issue_refs": [
+              "GH 41485"
+            ],
+            "library_function": null
+          },
+          "rank": 2
+        },
+        {
+          "evidence": "name_match",
+          "matched_keywords": [],
+          "score": 0.03128054740957967,
+          "hybrid_rank": 3,
+          "semantic_rank": 6,
+          "keyword_rank": 2,
+          "chunk": {
+            "chunk_id": "pandas-changelog_v2.0.0-20-72",
+            "text": "Remove keyword mangle_dupe_cols from read_csv() and read_table() ( GH 48137 )",
+            "source_type": "changelog",
+            "source_url": "https://pandas.pydata.org/pandas-docs/version/2.3/whatsnew/v2.0.0.html",
+            "library": "pandas",
+            "version": "2.0.0",
+            "section": "Removal of prior version deprecations/changes",
+            "subsection": null,
+            "category": "breaking_change",
+            "issue_refs": [
+              "GH 48137"
+            ],
+            "library_function": null
+          },
+          "rank": 3
+        },
+        {
+          "evidence": "name_match",
+          "matched_keywords": [],
+          "score": 0.03125763125763126,
+          "hybrid_rank": 4,
+          "semantic_rank": 5,
+          "keyword_rank": 3,
+          "chunk": {
+            "chunk_id": "pandas-changelog_v2.0.0-18-29",
+            "text": "Added \"None\" to default na_values in read_csv() ( GH 50286 )",
+            "source_type": "changelog",
+            "source_url": "https://pandas.pydata.org/pandas-docs/version/2.3/whatsnew/v2.0.0.html",
+            "library": "pandas",
+            "version": "2.0.0",
+            "section": "Backwards incompatible API changes",
+            "subsection": "Other API changes",
+            "category": "breaking_change",
+            "issue_refs": [
+              "GH 50286"
+            ],
+            "library_function": null
+          },
+          "rank": 4
+        },
+        {
+          "evidence": "name_match",
+          "matched_keywords": [],
+          "score": 0.03055037313432836,
+          "hybrid_rank": 5,
+          "semantic_rank": 7,
+          "keyword_rank": 4,
+          "chunk": {
+            "chunk_id": "pandas-changelog_v2.0.0-19-12",
+            "text": "Deprecated argument date_parser in read_csv() , read_table() , read_fwf() , and read_excel() in favour of date_format ( GH 50601 )",
+            "source_type": "changelog",
+            "source_url": "https://pandas.pydata.org/pandas-docs/version/2.3/whatsnew/v2.0.0.html",
+            "library": "pandas",
+            "version": "2.0.0",
+            "section": "Deprecations",
+            "subsection": null,
+            "category": "deprecation",
+            "issue_refs": [
+              "GH 50601"
+            ],
+            "library_function": null
+          },
+          "rank": 5
+        }
+      ]
+    },
+    {
+      "usage": {
+        "file": "legacy_args.py",
+        "line": 6,
+        "snippet": "pieces = data.groupby(\"kind\", squeeze=True)",
+        "function": "groupby",
+        "resolved": true,
+        "resolution": "tracked_variable",
+        "kind": "call",
+        "keywords": [
+          "squeeze"
+        ]
+      },
+      "status": "documented_change",
+      "confidence": "high",
+      "matches": [
+        {
+          "evidence": "keyword_match",
+          "matched_keywords": [
+            "squeeze"
+          ],
+          "score": 0.03278688524590164,
+          "hybrid_rank": 1,
+          "semantic_rank": 1,
+          "keyword_rank": 1,
+          "chunk": {
+            "chunk_id": "pandas-changelog_v2.0.0-20-47",
+            "text": "Remove argument squeeze from DataFrame.groupby() and Series.groupby() ( GH 32380 )",
+            "source_type": "changelog",
+            "source_url": "https://pandas.pydata.org/pandas-docs/version/2.3/whatsnew/v2.0.0.html",
+            "library": "pandas",
+            "version": "2.0.0",
+            "section": "Removal of prior version deprecations/changes",
+            "subsection": null,
+            "category": "breaking_change",
+            "issue_refs": [
+              "GH 32380"
+            ],
+            "library_function": "DataFrame.groupby()"
+          },
+          "rank": 1
+        },
+        {
+          "evidence": "name_match",
+          "matched_keywords": [],
+          "score": 0.030621785881252923,
+          "hybrid_rank": 4,
+          "semantic_rank": 2,
+          "keyword_rank": 9,
+          "chunk": {
+            "chunk_id": "pandas-changelog_v2.0.0-20-217",
+            "text": "Enforced deprecation of silently dropping nuisance columns in groupby and resample operations when numeric_only=False ( GH 41475 )",
+            "source_type": "changelog",
+            "source_url": "https://pandas.pydata.org/pandas-docs/version/2.3/whatsnew/v2.0.0.html",
+            "library": "pandas",
+            "version": "2.0.0",
+            "section": "Removal of prior version deprecations/changes",
+            "subsection": null,
+            "category": "breaking_change",
+            "issue_refs": [
+              "GH 41475"
+            ],
+            "library_function": null
+          },
+          "rank": 2
+        },
+        {
+          "evidence": "name_match",
+          "matched_keywords": [],
+          "score": 0.030309988518943745,
+          "hybrid_rank": 5,
+          "semantic_rank": 5,
+          "keyword_rank": 7,
+          "chunk": {
+            "chunk_id": "pandas-changelog_v2.0.0-20-119",
+            "text": "Removed the level keyword in DataFrame and Series aggregations; use groupby instead ( GH 39983 )",
+            "source_type": "changelog",
+            "source_url": "https://pandas.pydata.org/pandas-docs/version/2.3/whatsnew/v2.0.0.html",
+            "library": "pandas",
+            "version": "2.0.0",
+            "section": "Removal of prior version deprecations/changes",
+            "subsection": null,
+            "category": "breaking_change",
+            "issue_refs": [
+              "GH 39983"
+            ],
+            "library_function": null
+          },
+          "rank": 3
+        },
+        {
+          "evidence": "name_match",
+          "matched_keywords": [],
+          "score": 0.02857142857142857,
+          "hybrid_rank": 7,
+          "semantic_rank": 10,
+          "keyword_rank": 10,
+          "chunk": {
+            "chunk_id": "pandas-changelog_v2.0.0-20-223",
+            "text": "When providing a list of columns of length one to DataFrame.groupby() , the keys that are returned by iterating over the resulting DataFrameGroupBy object will now be tuples of length one ( GH 47761 )",
+            "source_type": "changelog",
+            "source_url": "https://pandas.pydata.org/pandas-docs/version/2.3/whatsnew/v2.0.0.html",
+            "library": "pandas",
+            "version": "2.0.0",
+            "section": "Removal of prior version deprecations/changes",
+            "subsection": null,
+            "category": "breaking_change",
+            "issue_refs": [
+              "GH 47761"
+            ],
+            "library_function": "DataFrame.groupby()"
+          },
+          "rank": 4
+        }
+      ]
+    },
+    {
+      "usage": {
+        "file": "legacy_args.py",
+        "line": 7,
+        "snippet": "data.to_excel(\"out.xlsx\", encoding=\"utf-8\")",
+        "function": "to_excel",
+        "resolved": true,
+        "resolution": "tracked_variable",
+        "kind": "call",
+        "keywords": [
+          "encoding"
+        ]
+      },
+      "status": "documented_change",
+      "confidence": "high",
+      "matches": [
+        {
+          "evidence": "keyword_match",
+          "matched_keywords": [
+            "encoding"
+          ],
+          "score": 0.03278688524590164,
+          "hybrid_rank": 1,
+          "semantic_rank": 1,
+          "keyword_rank": 1,
+          "chunk": {
+            "chunk_id": "pandas-changelog_v2.0.0-20-52",
+            "text": "Removed arguments verbose and encoding from DataFrame.to_excel() and Series.to_excel() ( GH 47912 )",
+            "source_type": "changelog",
+            "source_url": "https://pandas.pydata.org/pandas-docs/version/2.3/whatsnew/v2.0.0.html",
+            "library": "pandas",
+            "version": "2.0.0",
+            "section": "Removal of prior version deprecations/changes",
+            "subsection": null,
+            "category": "breaking_change",
+            "issue_refs": [
+              "GH 47912"
+            ],
+            "library_function": "DataFrame.to_excel()"
+          },
+          "rank": 1
+        }
+      ]
+    },
+    {
+      "usage": {
+        "file": "loader.py",
+        "line": 7,
+        "snippet": "df = pd.read_csv(path)",
+        "function": "read_csv",
+        "resolved": true,
+        "resolution": "module",
+        "kind": "call",
+        "keywords": []
+      },
+      "status": "review",
+      "confidence": "high",
+      "matches": [
+        {
+          "evidence": "name_match",
+          "matched_keywords": [],
+          "score": 0.032018442622950824,
+          "hybrid_rank": 1,
+          "semantic_rank": 1,
+          "keyword_rank": 4,
+          "chunk": {
+            "chunk_id": "pandas-changelog_v2.0.0-20-98",
+            "text": "Disallow passing non-keyword arguments to read_csv() except filepath_or_buffer ( GH 41485 )",
+            "source_type": "changelog",
+            "source_url": "https://pandas.pydata.org/pandas-docs/version/2.3/whatsnew/v2.0.0.html",
+            "library": "pandas",
+            "version": "2.0.0",
+            "section": "Removal of prior version deprecations/changes",
+            "subsection": null,
+            "category": "breaking_change",
+            "issue_refs": [
+              "GH 41485"
+            ],
+            "library_function": null
+          },
+          "rank": 1
+        },
+        {
+          "evidence": "name_match",
+          "matched_keywords": [],
+          "score": 0.03177805800756621,
+          "hybrid_rank": 2,
+          "semantic_rank": 5,
+          "keyword_rank": 1,
+          "chunk": {
+            "chunk_id": "pandas-changelog_v2.0.0-20-72",
+            "text": "Remove keyword mangle_dupe_cols from read_csv() and read_table() ( GH 48137 )",
+            "source_type": "changelog",
+            "source_url": "https://pandas.pydata.org/pandas-docs/version/2.3/whatsnew/v2.0.0.html",
+            "library": "pandas",
+            "version": "2.0.0",
+            "section": "Removal of prior version deprecations/changes",
+            "subsection": null,
+            "category": "breaking_change",
+            "issue_refs": [
+              "GH 48137"
+            ],
+            "library_function": null
+          },
+          "rank": 2
+        },
+        {
+          "evidence": "name_match",
+          "matched_keywords": [],
+          "score": 0.031754032258064516,
+          "hybrid_rank": 3,
+          "semantic_rank": 4,
+          "keyword_rank": 2,
+          "chunk": {
+            "chunk_id": "pandas-changelog_v2.0.0-18-29",
+            "text": "Added \"None\" to default na_values in read_csv() ( GH 50286 )",
+            "source_type": "changelog",
+            "source_url": "https://pandas.pydata.org/pandas-docs/version/2.3/whatsnew/v2.0.0.html",
+            "library": "pandas",
+            "version": "2.0.0",
+            "section": "Backwards incompatible API changes",
+            "subsection": "Other API changes",
+            "category": "breaking_change",
+            "issue_refs": [
+              "GH 50286"
+            ],
+            "library_function": null
+          },
+          "rank": 3
+        },
+        {
+          "evidence": "name_match",
+          "matched_keywords": [],
+          "score": 0.031024531024531024,
+          "hybrid_rank": 4,
+          "semantic_rank": 6,
+          "keyword_rank": 3,
+          "chunk": {
+            "chunk_id": "pandas-changelog_v2.0.0-19-12",
+            "text": "Deprecated argument date_parser in read_csv() , read_table() , read_fwf() , and read_excel() in favour of date_format ( GH 50601 )",
+            "source_type": "changelog",
+            "source_url": "https://pandas.pydata.org/pandas-docs/version/2.3/whatsnew/v2.0.0.html",
+            "library": "pandas",
+            "version": "2.0.0",
+            "section": "Deprecations",
+            "subsection": null,
+            "category": "deprecation",
+            "issue_refs": [
+              "GH 50601"
+            ],
+            "library_function": null
+          },
+          "rank": 4
+        },
+        {
+          "evidence": "name_match",
+          "matched_keywords": [],
+          "score": 0.030834914611005692,
+          "hybrid_rank": 5,
+          "semantic_rank": 2,
+          "keyword_rank": 8,
+          "chunk": {
+            "chunk_id": "pandas-changelog_v2.0.0-20-149",
+            "text": "Enforced disallowing using usecols with out of bounds indices for read_csv with engine=\"c\" ( GH 25623 )",
+            "source_type": "changelog",
+            "source_url": "https://pandas.pydata.org/pandas-docs/version/2.3/whatsnew/v2.0.0.html",
+            "library": "pandas",
+            "version": "2.0.0",
+            "section": "Removal of prior version deprecations/changes",
+            "subsection": null,
+            "category": "breaking_change",
+            "issue_refs": [
+              "GH 25623"
+            ],
+            "library_function": null
+          },
+          "rank": 5
+        }
+      ]
+    },
+    {
+      "usage": {
+        "file": "loader.py",
+        "line": 8,
+        "snippet": "extra = pd.DataFrame({\"a\": [1]})",
+        "function": "DataFrame",
+        "resolved": true,
+        "resolution": "module",
+        "kind": "call",
+        "keywords": []
+      },
+      "status": "review",
+      "confidence": "high",
+      "matches": [
+        {
+          "evidence": "name_match",
+          "matched_keywords": [],
+          "score": 0.03076923076923077,
+          "hybrid_rank": 1,
+          "semantic_rank": 5,
+          "keyword_rank": 5,
+          "chunk": {
+            "chunk_id": "pandas-changelog_v2.0.0-19-25",
+            "text": "Deprecated DataFrame.backfill() in favor of DataFrame.bfill() ( GH 33396 )",
+            "source_type": "changelog",
+            "source_url": "https://pandas.pydata.org/pandas-docs/version/2.3/whatsnew/v2.0.0.html",
+            "library": "pandas",
+            "version": "2.0.0",
+            "section": "Deprecations",
+            "subsection": null,
+            "category": "deprecation",
+            "issue_refs": [
+              "GH 33396"
+            ],
+            "library_function": "DataFrame.backfill()"
+          },
+          "rank": 1
+        },
+        {
+          "evidence": "name_match",
+          "matched_keywords": [],
+          "score": 0.028790389395194696,
+          "hybrid_rank": 2,
+          "semantic_rank": 8,
+          "keyword_rank": 11,
+          "chunk": {
+            "chunk_id": "pandas-changelog_v2.0.0-20-161",
+            "text": "Enforced disallowing value_name argument in DataFrame.melt() to match an element in the DataFrame columns ( GH 35003 )",
+            "source_type": "changelog",
+            "source_url": "https://pandas.pydata.org/pandas-docs/version/2.3/whatsnew/v2.0.0.html",
+            "library": "pandas",
+            "version": "2.0.0",
+            "section": "Removal of prior version deprecations/changes",
+            "subsection": null,
+            "category": "breaking_change",
+            "issue_refs": [
+              "GH 35003"
+            ],
+            "library_function": "DataFrame.melt()"
+          },
+          "rank": 2
+        },
+        {
+          "evidence": "name_match",
+          "matched_keywords": [],
+          "score": 0.028665028665028666,
+          "hybrid_rank": 3,
+          "semantic_rank": 14,
+          "keyword_rank": 6,
+          "chunk": {
+            "chunk_id": "pandas-changelog_v2.0.0-19-24",
+            "text": "Deprecated DataFrame.pad() in favor of DataFrame.ffill() ( GH 33396 )",
+            "source_type": "changelog",
+            "source_url": "https://pandas.pydata.org/pandas-docs/version/2.3/whatsnew/v2.0.0.html",
+            "library": "pandas",
+            "version": "2.0.0",
+            "section": "Deprecations",
+            "subsection": null,
+            "category": "deprecation",
+            "issue_refs": [
+              "GH 33396"
+            ],
+            "library_function": "DataFrame.pad()"
+          },
+          "rank": 3
+        },
+        {
+          "evidence": "name_match",
+          "matched_keywords": [],
+          "score": 0.027809742999616416,
+          "hybrid_rank": 4,
+          "semantic_rank": 6,
+          "keyword_rank": 19,
+          "chunk": {
+            "chunk_id": "pandas-changelog_v2.0.0-20-32",
+            "text": "Removed deprecated argument col_space in DataFrame.to_latex() ( GH 47970 )",
+            "source_type": "changelog",
+            "source_url": "https://pandas.pydata.org/pandas-docs/version/2.3/whatsnew/v2.0.0.html",
+            "library": "pandas",
+            "version": "2.0.0",
+            "section": "Removal of prior version deprecations/changes",
+            "subsection": null,
+            "category": "breaking_change",
+            "issue_refs": [
+              "GH 47970"
+            ],
+            "library_function": "DataFrame.to_latex()"
+          },
+          "rank": 4
+        },
+        {
+          "evidence": "name_match",
+          "matched_keywords": [],
+          "score": 0.027272727272727275,
+          "hybrid_rank": 5,
+          "semantic_rank": 17,
+          "keyword_rank": 10,
+          "chunk": {
+            "chunk_id": "pandas-changelog_v2.0.0-20-73",
+            "text": "Removed errors keyword from DataFrame.where() , Series.where() , DataFrame.mask() and Series.mask() ( GH 47728 )",
+            "source_type": "changelog",
+            "source_url": "https://pandas.pydata.org/pandas-docs/version/2.3/whatsnew/v2.0.0.html",
+            "library": "pandas",
+            "version": "2.0.0",
+            "section": "Removal of prior version deprecations/changes",
+            "subsection": null,
+            "category": "breaking_change",
+            "issue_refs": [
+              "GH 47728"
+            ],
+            "library_function": "DataFrame.where()"
+          },
+          "rank": 5
+        }
+      ]
+    },
+    {
+      "usage": {
+        "file": "loader.py",
+        "line": 9,
+        "snippet": "df = df.append(extra)",
+        "function": "append",
+        "resolved": true,
+        "resolution": "tracked_variable",
+        "kind": "call",
+        "keywords": []
+      },
+      "status": "documented_change",
+      "confidence": "high",
+      "matches": [
+        {
+          "evidence": "removed",
+          "matched_keywords": [],
+          "score": 0.032266458495966696,
+          "hybrid_rank": 1,
+          "semantic_rank": 3,
+          "keyword_rank": 1,
+          "chunk": {
+            "chunk_id": "pandas-changelog_v2.0.0-20-22",
+            "text": "Removed deprecated Series.append() , DataFrame.append() , use concat() instead ( GH 35407 )",
+            "source_type": "changelog",
+            "source_url": "https://pandas.pydata.org/pandas-docs/version/2.3/whatsnew/v2.0.0.html",
+            "library": "pandas",
+            "version": "2.0.0",
+            "section": "Removal of prior version deprecations/changes",
+            "subsection": null,
+            "category": "breaking_change",
+            "issue_refs": [
+              "GH 35407"
+            ],
+            "library_function": "Series.append()"
+          },
+          "rank": 1
+        }
+      ]
+    },
+    {
+      "usage": {
+        "file": "loader.py",
+        "line": 10,
+        "snippet": "LOG.append(\"loaded\")",
+        "function": "append",
+        "resolved": false,
+        "resolution": "unknown",
+        "kind": "call",
+        "keywords": []
+      },
+      "status": "documented_change",
+      "confidence": "low",
+      "matches": [
+        {
+          "evidence": "removed",
+          "matched_keywords": [],
+          "score": 0.032266458495966696,
+          "hybrid_rank": 1,
+          "semantic_rank": 3,
+          "keyword_rank": 1,
+          "chunk": {
+            "chunk_id": "pandas-changelog_v2.0.0-20-22",
+            "text": "Removed deprecated Series.append() , DataFrame.append() , use concat() instead ( GH 35407 )",
+            "source_type": "changelog",
+            "source_url": "https://pandas.pydata.org/pandas-docs/version/2.3/whatsnew/v2.0.0.html",
+            "library": "pandas",
+            "version": "2.0.0",
+            "section": "Removal of prior version deprecations/changes",
+            "subsection": null,
+            "category": "breaking_change",
+            "issue_refs": [
+              "GH 35407"
+            ],
+            "library_function": "Series.append()"
+          },
+          "rank": 1
+        }
+      ]
+    },
+    {
+      "usage": {
+        "file": "plain_import.py",
+        "line": 5,
+        "snippet": "data = pandas.read_csv(path)",
+        "function": "read_csv",
+        "resolved": true,
+        "resolution": "module",
+        "kind": "call",
+        "keywords": []
+      },
+      "status": "review",
+      "confidence": "high",
+      "matches": [
+        {
+          "evidence": "name_match",
+          "matched_keywords": [],
+          "score": 0.032018442622950824,
+          "hybrid_rank": 1,
+          "semantic_rank": 1,
+          "keyword_rank": 4,
+          "chunk": {
+            "chunk_id": "pandas-changelog_v2.0.0-20-98",
+            "text": "Disallow passing non-keyword arguments to read_csv() except filepath_or_buffer ( GH 41485 )",
+            "source_type": "changelog",
+            "source_url": "https://pandas.pydata.org/pandas-docs/version/2.3/whatsnew/v2.0.0.html",
+            "library": "pandas",
+            "version": "2.0.0",
+            "section": "Removal of prior version deprecations/changes",
+            "subsection": null,
+            "category": "breaking_change",
+            "issue_refs": [
+              "GH 41485"
+            ],
+            "library_function": null
+          },
+          "rank": 1
+        },
+        {
+          "evidence": "name_match",
+          "matched_keywords": [],
+          "score": 0.03177805800756621,
+          "hybrid_rank": 2,
+          "semantic_rank": 5,
+          "keyword_rank": 1,
+          "chunk": {
+            "chunk_id": "pandas-changelog_v2.0.0-20-72",
+            "text": "Remove keyword mangle_dupe_cols from read_csv() and read_table() ( GH 48137 )",
+            "source_type": "changelog",
+            "source_url": "https://pandas.pydata.org/pandas-docs/version/2.3/whatsnew/v2.0.0.html",
+            "library": "pandas",
+            "version": "2.0.0",
+            "section": "Removal of prior version deprecations/changes",
+            "subsection": null,
+            "category": "breaking_change",
+            "issue_refs": [
+              "GH 48137"
+            ],
+            "library_function": null
+          },
+          "rank": 2
+        },
+        {
+          "evidence": "name_match",
+          "matched_keywords": [],
+          "score": 0.031754032258064516,
+          "hybrid_rank": 3,
+          "semantic_rank": 4,
+          "keyword_rank": 2,
+          "chunk": {
+            "chunk_id": "pandas-changelog_v2.0.0-18-29",
+            "text": "Added \"None\" to default na_values in read_csv() ( GH 50286 )",
+            "source_type": "changelog",
+            "source_url": "https://pandas.pydata.org/pandas-docs/version/2.3/whatsnew/v2.0.0.html",
+            "library": "pandas",
+            "version": "2.0.0",
+            "section": "Backwards incompatible API changes",
+            "subsection": "Other API changes",
+            "category": "breaking_change",
+            "issue_refs": [
+              "GH 50286"
+            ],
+            "library_function": null
+          },
+          "rank": 3
+        },
+        {
+          "evidence": "name_match",
+          "matched_keywords": [],
+          "score": 0.031024531024531024,
+          "hybrid_rank": 4,
+          "semantic_rank": 6,
+          "keyword_rank": 3,
+          "chunk": {
+            "chunk_id": "pandas-changelog_v2.0.0-19-12",
+            "text": "Deprecated argument date_parser in read_csv() , read_table() , read_fwf() , and read_excel() in favour of date_format ( GH 50601 )",
+            "source_type": "changelog",
+            "source_url": "https://pandas.pydata.org/pandas-docs/version/2.3/whatsnew/v2.0.0.html",
+            "library": "pandas",
+            "version": "2.0.0",
+            "section": "Deprecations",
+            "subsection": null,
+            "category": "deprecation",
+            "issue_refs": [
+              "GH 50601"
+            ],
+            "library_function": null
+          },
+          "rank": 4
+        },
+        {
+          "evidence": "name_match",
+          "matched_keywords": [],
+          "score": 0.030834914611005692,
+          "hybrid_rank": 5,
+          "semantic_rank": 2,
+          "keyword_rank": 8,
+          "chunk": {
+            "chunk_id": "pandas-changelog_v2.0.0-20-149",
+            "text": "Enforced disallowing using usecols with out of bounds indices for read_csv with engine=\"c\" ( GH 25623 )",
+            "source_type": "changelog",
+            "source_url": "https://pandas.pydata.org/pandas-docs/version/2.3/whatsnew/v2.0.0.html",
+            "library": "pandas",
+            "version": "2.0.0",
+            "section": "Removal of prior version deprecations/changes",
+            "subsection": null,
+            "category": "breaking_change",
+            "issue_refs": [
+              "GH 25623"
+            ],
+            "library_function": null
+          },
+          "rank": 5
+        }
+      ]
+    }
+  ]
+}
