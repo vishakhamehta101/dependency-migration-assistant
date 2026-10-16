@@ -28,6 +28,8 @@ Shortcuts taken for the student/prototype version of Module 1, what production w
 | 20 | Scan | Only `.py` files are scanned, and the skipped-folder list is hardcoded | Jupyter notebooks included; skip list configurable | Extract code cells with `nbformat`; move `SKIP_DIRS` into settings |
 | 21 | Match | The eligible version (`2.0.0`) is written by hand in `migration_filters` | Derive eligible versions from the user's from/to versions | Add `from_version` / `to_version` inputs and build the filter in code |
 | 22 | Scan | Keyword arguments are recorded by name only; `**kwargs` expansions and positional arguments are not | Record positional arguments and constant values where the changelog names them | Extend the scan record |
+| 23 | Match | "Removed function" is detected from the wording of the note (starts with Removed/Remove/Removal and names the function before from/in/of/with). Argument words such as `axis` or `index` can also strengthen a match | Parse each changelog entry into action, target and arguments once, at chunk time, and store them as chunk fields | Add a structured-change extractor to chunk.py |
+| 24 | Match | Only the top 50 candidates per usage are examined and the top 5 kept. Very generic names (e.g. `DataFrame`, 111 notes) are truncated and always land in `review` | Argument- and context-aware matching, or an LLM judgement per usage | System 6 |
 
 ## Dropped decisions
 
