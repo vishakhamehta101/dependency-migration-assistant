@@ -26,6 +26,8 @@ Shortcuts taken for the student/prototype version of Module 1, what production w
 | 18 | Retrieve | No relevance cutoff: semantic search always returns the nearest chunks, even for nonsense | A cutoff calibrated on labelled data | System 5 (matcher and reranker) |
 | 19 | Scan | Variable tracking is a heuristic: assignments, annotated parameters and `with ... as` targets. Not tracked: `self.df` across methods, tuple unpacking, loop variables, results of user-defined functions. Unresolved method calls are kept only if the library documents the method name | Real type inference (pyright or jedi) | Replace `is_library_object` with a type-aware resolver; the record format stays the same |
 | 20 | Scan | Only `.py` files are scanned, and the skipped-folder list is hardcoded | Jupyter notebooks included; skip list configurable | Extract code cells with `nbformat`; move `SKIP_DIRS` into settings |
+| 21 | Match | The eligible version (`2.0.0`) is written by hand in `migration_filters` | Derive eligible versions from the user's from/to versions | Add `from_version` / `to_version` inputs and build the filter in code |
+| 22 | Scan | Keyword arguments are recorded by name only; `**kwargs` expansions and positional arguments are not | Record positional arguments and constant values where the changelog names them | Extend the scan record |
 
 ## Dropped decisions
 

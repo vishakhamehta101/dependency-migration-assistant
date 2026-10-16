@@ -12,5 +12,14 @@
   ],
   "import_names": [
     "pandas"
-  ]
+  ],
+  "migration_filters": {
+    "category": [
+      "breaking_change",
+      "deprecation"
+    ],
+    "version": [
+      "2.0.0"
+    ]
+  }
 }

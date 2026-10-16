@@ -18,7 +18,8 @@ from pathlib import Path
 
 from qdrant_client import QdrantClient
 from qdrant_client.models import (
-    Distance, FieldCondition, Filter, IsNullCondition, MatchValue, PayloadField, PointStruct, VectorParams,
+    Distance, FieldCondition, Filter, IsNullCondition, MatchAny, MatchValue, PayloadField, PointStruct,
+    VectorParams,
 )
 from rank_bm25 import BM25Okapi
 
@@ -155,10 +156,21 @@ def get_keyword_index(client, name: str):
     return _KEYWORD_CACHE[name]
 
 
+def matches_filters(chunk: dict, filters: dict) -> bool:
+    """True if the chunk satisfies every filter. A list value means "any of these"."""
+    for key, value in filters.items():
+        if isinstance(value, (list, tuple, set)):
+            if chunk.get(key) not in value:
+                return False
+        elif chunk.get(key) != value:
+            return False
+    return True
+
+
 def keyword_search(query: str, library: str, top_k: int = 5, filters: dict | None = None, client=None) -> list:
     """
     Exact-word (BM25) search over one library's chunks.
-    `filters` matches exact values on any chunk field, e.g. {"version": "2.0.0"}.
+    `filters` matches exact values on any chunk field, e.g. {"version": "2.0.0"}; a list matches any of its values.
     Chunks sharing no word with the query are never returned.
     Returns [{"rank": int, "score": float, "chunk": {...}}], best first.
     """
@@ -189,7 +201,7 @@ def keyword_search(query: str, library: str, top_k: int = 5, filters: dict | Non
     for i in sorted(range(len(chunks)), key=lambda i: -scores[i]):
         if scores[i] <= 0:
             break  # everything after this shares no word with the query
-        if filters and any(chunks[i].get(key) != value for key, value in filters.items()):
+        if filters and not matches_filters(chunks[i], filters):
             continue
         results.append({"rank": len(results) + 1, "score": float(scores[i]), "chunk": chunks[i]})
         if len(results) == top_k:
@@ -205,13 +217,15 @@ def get_model():
 
 
 def build_qdrant_filter(filters: dict | None):
-    """Turn {"version": "2.0.1", "category": "bug_fix"} into a Qdrant filter. A value of None matches missing/null."""
+    """Turn {"version": "2.0.1", "category": "bug_fix"} into a Qdrant filter. None matches missing/null; a list matches any of its values."""
     if not filters:
         return None
     conditions = []
     for key, value in filters.items():
         if value is None:
             conditions.append(IsNullCondition(is_null=PayloadField(key=key)))
+        elif isinstance(value, (list, tuple, set)):
+            conditions.append(FieldCondition(key=key, match=MatchAny(any=list(value))))
         else:
             conditions.append(FieldCondition(key=key, match=MatchValue(value=value)))
     return Filter(must=conditions)

@@ -88,7 +88,7 @@ class UsageVisitor(ast.NodeVisitor):
     def tracked(self) -> set:
         return self.scopes[-1]
 
-    def record(self, node, function: str, resolution: str, kind: str) -> None:
+    def record(self, node, function: str, resolution: str, kind: str, keywords=()) -> None:
         line_index = min(node.lineno, len(self.lines)) - 1
         self.usages.append({
             "file": self.relative_path,
@@ -98,6 +98,7 @@ class UsageVisitor(ast.NodeVisitor):
             "resolved": resolution != "unknown",
             "resolution": resolution,
             "kind": kind,
+            "keywords": list(keywords),
         })
 
     def library_path(self, node):
@@ -144,15 +145,16 @@ class UsageVisitor(ast.NodeVisitor):
     # ---- what gets recorded -------------------------------------------------
 
     def visit_Call(self, node):
+        keywords = [keyword.arg for keyword in node.keywords if keyword.arg]  # **kwargs has no name
         found = self.library_path(node.func)
         if found:
-            self.record(node, found[0], found[1], "call")
+            self.record(node, found[0], found[1], "call", keywords)
         elif isinstance(node.func, ast.Attribute):
             receiver, name = node.func.value, node.func.attr
             if self.is_library_object(receiver):
-                self.record(node, name, "tracked_variable", "call")
+                self.record(node, name, "tracked_variable", "call", keywords)
             elif self.known_names is not None and name in self.known_names:
-                self.record(node, name, "unknown", "call")
+                self.record(node, name, "unknown", "call", keywords)
             else:
                 self.unresolved_skipped += 1
             self.visit(receiver)  # the receiver may hold further calls: df.groupby(...).agg(...)
@@ -252,7 +254,7 @@ def scan(path: str, settings: dict, known_names: set | None = None) -> list:
     """
     List every usage of the library (settings["import_names"], default [settings["library"]])
     in a file or folder of Python code.
-    Returns [{"file", "line", "snippet", "function", "resolved", "resolution", "kind"}], in file/line order.
+    Returns [{"file", "line", "snippet", "function", "resolved", "resolution", "kind", "keywords"}], in file/line order.
     """
     root = Path(path)
     if not root.exists():
