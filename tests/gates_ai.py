@@ -8,6 +8,7 @@ Asks the model about every usage the matcher flagged (from data/sample_matches.j
                    every shown fix is grounded
   G4 Stability     two runs agree on at least 95% of verdicts
   G5 Cost          reported only (time, retries, failures, swap)
+  G6 Evidence rule (D29, added after the first run)  no 'review'-level usage is ever shown 'affected'
 The keys below were fixed before any model results existed.
 """
 import json, re, subprocess, sys, time
@@ -75,6 +76,11 @@ def evaluate_gates(run1: list, run2: list | None = None) -> dict:
                    "summary": f"{affected} 'affected' finding(s), all with verified citations; {sum(1 for f in run1 if f['confidence'] == 'low')} unconfirmed object(s) handled" if not failures
                               else f"{len(failures)} problem(s)"}
 
+    review = [f for f in run1 if f["status"] == "review"]
+    violations = [f"{key_of(f)}: review-level usage shown 'affected'" for f in review if f["verdict"] == "affected"]
+    gates["G6"] = {"passed": not violations, "failures": violations,
+                   "summary": f"none of the {len(review)} review-level usages is shown 'affected' (D29)" if not violations else f"{len(violations)} violation(s)"}
+
     if run2 is None:
         gates["G4"] = {"passed": None, "failures": [], "summary": "second run not done"}
     else:
@@ -84,6 +90,14 @@ def evaluate_gates(run1: list, run2: list | None = None) -> dict:
         gates["G4"] = {"passed": agreement >= STABILITY_MIN, "failures": differ,
                        "summary": f"{agreement:.0%} of {len(run1)} verdicts agree between the two runs"}
     return gates
+
+
+def raw_stats(run: list) -> dict:
+    """What the model itself said, before any cap, against what is shown."""
+    said = [f for f in run if f.get("raw_verdict") == "affected"]
+    return {"said_affected": len(said),
+            "said_affected_confirmed": sum(1 for f in said if f["status"] == "documented_change" and f["confidence"] == "high"),
+            "shown_affected": sum(1 for f in run if f["verdict"] == "affected")}
 
 
 def swap_used_mb():
@@ -145,7 +159,7 @@ if __name__ == "__main__":
     gates = evaluate_gates(runs[0], runs[1])
     by_key = {key_of(f): f for f in runs[0]}
     print("\n=== gates ===")
-    for name, title in (("G1", "Recall"), ("G2", "No false alarms"), ("G3", "Honesty"), ("G4", "Stability")):
+    for name, title in (("G1", "Recall"), ("G2", "No false alarms"), ("G3", "Honesty"), ("G4", "Stability"), ("G6", "Evidence rule")):
         gate = gates[name]
         print(f"{name} {title:16s} {'PASS' if gate['passed'] else 'FAIL'}  {gate['summary']}")
         for failure in gate["failures"]:
@@ -166,8 +180,11 @@ if __name__ == "__main__":
         print(f"{label}: {seconds:.0f}s for {len(runs[0])} usages | {calls} model calls | swap in use afterwards: {swap} MB")
     print(f"average speed: {sum(s['tokens_per_second'] for s in model.stats) / len(model.stats):.1f} tokens/s")
     print("verdicts in run 1:", counts, "| flags in run 1:", flags or "none")
+    stated = raw_stats(runs[0])
+    print(f"the model itself said 'affected' on {stated['said_affected']} of {len(runs[0])} usages "
+          f"({stated['said_affected_confirmed']} on confirmed documented changes); shown as 'affected': {stated['shown_affected']}")
     print("\nall findings (run 1):")
     for finding in runs[0]:
         key = key_of(finding)
         marker = "G1" if key in G1_KEYS else ("G2" if key in G2_KEYS else "  ")
-        print(f"  {marker} {key[0]}:{key[1]} {key[2]:22s} {finding['verdict']:12s} matcher={finding['status']:18s} confidence={finding['confidence']}")
+        print(f"  {marker} {key[0]}:{key[1]} {key[2]:22s} {finding['verdict']:12s} matcher={finding['status']:18s} confidence={finding['confidence']:5s} model said={finding.get('raw_verdict')}")

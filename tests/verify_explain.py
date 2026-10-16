@@ -183,6 +183,47 @@ to_dict_result = match.match_usage(usage("to_dict", snippet="rows = df.to_dict()
 finding = explain.explain_usage(to_dict_result, FakeModel(TO_DICT_ANSWER), "pandas")
 check("a real 'review' case: 'not_affected' with a valid citation is accepted", to_dict_result["status"] == "review" and finding["verdict"] == "not_affected" and finding["flags"] == [])
 
+# ---- D29: no 'affected' unless the matcher found hard evidence (status documented_change) -----------------
+NON_KEYWORD = real_chunk("Disallow passing non-keyword arguments to read_csv()")
+BACKFILL = real_chunk("Deprecated DataFrame.backfill()")
+read_csv_review = match.match_usage(usage("read_csv", snippet="df = pd.read_csv(path)"), [candidate(NON_KEYWORD)])
+annotation_review = match.match_usage(usage("DataFrame", snippet="def clean(frame: DataFrame, path):"), [candidate(BACKFILL)])
+check("the two real false-alarm cases are 'review' usages (the notes only share a name)", read_csv_review["status"] == "review" and annotation_review["status"] == "review")
+
+misread = answer_json(explanation="The code uses read_csv() and note 1 states that non-keyword arguments to read_csv() are now disallowed.", fix=None,
+                      citations=((1, "Disallow passing non-keyword arguments to read_csv() except filepath_or_buffer"),))
+finding = explain.explain_usage(read_csv_review, FakeModel(misread), "pandas")
+check("the real read_csv(path) misread, with a valid quote, is shown as 'unsure', flagged, with no citation and no fix",
+      finding["verdict"] == "unsure" and finding["flags"] == ["capped_review_status"] and finding["citations"] == [] and finding["suggested_fix"] is None)
+check("...the explanation is the fixed sentence, not the model's wrong reason", "1 note(s)" in finding["explanation"] and "manual check" in finding["explanation"]
+      and "disallowed" not in finding["explanation"])
+check("...the model's own words stay in the trace, and its stated verdict is recorded",
+      "disallowed" in finding["trace"][0]["reply"] and finding["raw_verdict"] == "affected")
+
+backfill_claim = answer_json(explanation="The code uses DataFrame.backfill(), which is deprecated.", fix="Use DataFrame.bfill() instead.",
+                             citations=((1, "Deprecated DataFrame.backfill() in favor of DataFrame.bfill()"),))
+finding = explain.explain_usage(annotation_review, FakeModel(backfill_claim), "pandas")
+check("the real type-annotation false alarm (a verified quote that does not apply) is shown as 'unsure'",
+      finding["verdict"] == "unsure" and "backfill" not in finding["explanation"] and finding["citations"] == [] and finding["suggested_fix"] is None)
+
+finding = explain.explain_usage(read_csv_review, FakeModel(answer_json(verdict="not_affected", explanation="The call passes only the path.", fix=None, citations=())), "pandas")
+check("a review usage can still be ruled out: 'not_affected' is unchanged", finding["verdict"] == "not_affected" and finding["flags"] == [] and finding["raw_verdict"] == "not_affected")
+finding = explain.explain_usage(read_csv_review, FakeModel(answer_json(verdict="unsure", explanation="Cannot tell.", fix=None, citations=())), "pandas")
+check("a review usage can stay 'unsure' without any cap flag", finding["verdict"] == "unsure" and finding["flags"] == [] and finding["explanation"] == "Cannot tell.")
+
+low_review = match.match_usage(usage("read_csv", snippet="x = obj.read_csv(path)", resolved=False), [candidate(NON_KEYWORD)])
+finding = explain.explain_usage(low_review, FakeModel(misread), "pandas")
+check("unconfirmed AND review-level: 'unsure', and the explanation carries both the manual-check sentence and the unconfirmed-object caveat",
+      low_review["status"] == "review" and finding["verdict"] == "unsure" and "manual check" in finding["explanation"] and "could not confirm" in finding["explanation"])
+
+finding = explain.explain_usage(APPEND_RESULT, FakeModel(answer_json()), "pandas")
+check("hard evidence (documented_change) still confirms: 'affected' with the model's stated verdict recorded", finding["verdict"] == "affected" and finding["raw_verdict"] == "affected" and finding["flags"] == [])
+finding = explain.explain_usage(APPEND_RESULT, FakeModel(liar, liar), "pandas")
+check("raw_verdict keeps what the model last stated even when its answer was rejected", finding["verdict"] == "unsure" and finding["raw_verdict"] == "affected")
+finding = explain.explain_usage(APPEND_RESULT, FakeModel(RuntimeError("down"), RuntimeError("down")), "pandas")
+check("raw_verdict is None when the model never answered", finding["raw_verdict"] is None)
+check("raw_verdict is None when no model was asked", explain.explain_usage(nothing, FakeModel(answer_json()), "pandas")["raw_verdict"] is None)
+
 # ---- many usages -------------------------------------------------------------------------------
 class AnswersByUsage:
     """A fake model that answers according to the code it is shown, and records its calls."""

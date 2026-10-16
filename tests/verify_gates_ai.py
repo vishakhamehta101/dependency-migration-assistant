@@ -83,5 +83,18 @@ g = gates_ai.evaluate_gates(run, second)
 check("G4 fails with 2 of 20 different (90%), and lists them", not g["G4"]["passed"] and len(g["G4"]["failures"]) == 2)
 check("G4 treats a missing finding in the second run as a difference", not gates_ai.evaluate_gates(run, run[:5])["G4"]["passed"])
 
+# ---- G6 (D29) and the raw-verdict statistics ------------------------------------------------------
+check("a good run passes G6", gates_ai.evaluate_gates(run)["G6"]["passed"], gates_ai.evaluate_gates(run)["G6"]["summary"])
+g = gates_ai.evaluate_gates(with_change(("cleaning.py", 6, "read_csv"), verdict="affected"))
+check("G6 fails when a review-level usage is shown 'affected', and names it", not g["G6"]["passed"] and "cleaning.py" in g["G6"]["failures"][0])
+check("'affected' on a confirmed documented change is not a G6 violation", gates_ai.evaluate_gates(run)["G6"]["failures"] == [])
+stated = copy.deepcopy(run)
+for f in stated:
+    if gates_ai.key_of(f) in (k1, ("cleaning.py", 6, "read_csv"), ("cleaning.py", 5, "DataFrame")):
+        f["raw_verdict"] = "affected"
+stats = gates_ai.raw_stats(stated)
+check("raw_stats counts what the model said (3), how many were confirmed breaks (1) and what is shown (7)",
+      stats == {"said_affected": 3, "said_affected_confirmed": 1, "shown_affected": 7}, str(stats))
+
 print("\nALL CHECKS PASSED:", ok_all)
 sys.exit(0 if ok_all else 1)

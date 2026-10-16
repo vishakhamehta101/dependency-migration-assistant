@@ -15,7 +15,10 @@ word: everything it says is checked here, in code.
   - one retry with the reasons if a check fails; after that the finding becomes "unsure"
   - if the scanner could not confirm the object is from the library, "affected" is shown as
     "unsure" and the explanation says why
-  - every finding keeps a trace of each attempt (the model's raw reply and the problems we found)
+  - D29: a usage whose notes only share a NAME with the call (status "review") can never be shown as "affected";
+    only the matcher's hard evidence (status "documented_change") can confirm a break
+  - every finding keeps a trace of each attempt (the model's raw reply and the problems we found) and the
+    verdict the model itself stated (raw_verdict), before any cap
 
 The model is a function passed in:  llm_call(system: str, user: str, schema: dict) -> str
 so tests can use fake models and a different model can be swapped in later.
@@ -33,6 +36,9 @@ logger = logging.getLogger(__name__)
 MIN_QUOTE_WORDS = 3
 MAX_SENTENCES = 3
 CAP_LOW_CONFIDENCE = True  # an unconfirmed object can be "unsure" at most, never "affected"
+CAP_REVIEW_STATUS = True   # D29: no "affected" unless the matcher found hard evidence
+REVIEW_CAP_TEXT = ("The changelog has {n} note(s) that mention this function, but none could be matched to this exact call, "
+                   "so it needs a manual check.")
 TRACE_REPLY_CHARS = 2000
 
 DOTTED_NAME = re.compile(r"\b[A-Za-z_]\w*(?:\.[A-Za-z_]\w*)+")   # df.concat
@@ -171,18 +177,18 @@ def ground_fix(fix, notes: list, usage: dict):
 def explain_usage(match_result: dict, llm_call, library: str = "the library") -> dict:
     """
     Turn one matched usage into a finding:
-    {"usage", "status", "confidence", "matches", "verdict", "explanation", "suggested_fix", "citations", "flags", "trace"}.
+    {"usage", "status", "confidence", "matches", "verdict", "explanation", "suggested_fix", "citations", "flags", "trace", "raw_verdict"}.
     """
     usage, notes = match_result["usage"], match_result["matches"]
     base = {"usage": usage, "status": match_result["status"], "confidence": match_result["confidence"], "matches": notes}
 
     if match_result["status"] == "no_documented_change" or not notes:
         return {**base, "verdict": "no_documented_change", "explanation": "No documented change in the changelog mentions this.",
-                "suggested_fix": None, "citations": [], "flags": [], "trace": []}
+                "suggested_fix": None, "citations": [], "flags": [], "trace": [], "raw_verdict": None}
 
     user = build_user_prompt(match_result, library)
     schema = ModelAnswer.model_json_schema()
-    problems, answer, failure, attempts, trace = [], None, None, 0, []
+    problems, answer, failure, attempts, trace, last_stated = [], None, None, 0, [], None
 
     for attempt in (1, 2):
         attempts = attempt
@@ -202,6 +208,7 @@ def explain_usage(match_result: dict, llm_call, library: str = "the library") ->
             problems, failure = ["the answer was not valid JSON in the required shape"], "model_error"
             trace.append({"attempt": attempt, "reply": str(raw)[:TRACE_REPLY_CHARS], "problems": problems})
             continue
+        last_stated = candidate.verdict
         problems = check_answer(candidate, notes)
         trace.append({"attempt": attempt, "reply": str(raw)[:TRACE_REPLY_CHARS], "problems": list(problems)})
         if not problems:
@@ -213,23 +220,30 @@ def explain_usage(match_result: dict, llm_call, library: str = "the library") ->
         reason = ("The AI model did not return a usable answer" if failure == "model_error"
                   else "The AI's answer could not be verified against the changelog notes")
         return {**base, "verdict": "unsure", "explanation": f"{reason}, so no verdict is given. The matched notes are attached for manual review.",
-                "suggested_fix": None, "citations": [], "flags": [failure], "trace": trace}
+                "suggested_fix": None, "citations": [], "flags": [failure], "trace": trace, "raw_verdict": last_stated}
 
     flags = ["needed_retry"] if attempts == 2 else []
+    verdict, explanation = answer.verdict, answer.explanation.strip()
+    citations = [{"note": c.note, "chunk_id": notes[c.note - 1]["chunk"]["chunk_id"], "quote": c.quote} for c in answer.citations]
     fix, dropped = ground_fix(answer.suggested_fix, notes, usage)
+
+    if CAP_REVIEW_STATUS and match_result["status"] == "review" and verdict == "affected":
+        # D29: the notes only share a name with this call; a small model must not turn that into a confirmed break.
+        # Its words (and its citation, which can be a real quote that does not apply) stay in the trace only.
+        verdict, fix, dropped, citations = "unsure", None, False, []
+        explanation = REVIEW_CAP_TEXT.format(n=len(notes))
+        flags.append("capped_review_status")
     if dropped:
         flags.append("fix_dropped")
 
-    verdict, explanation = answer.verdict, answer.explanation.strip()
     if match_result["confidence"] == "low":
         if verdict == "affected" and CAP_LOW_CONFIDENCE:
             verdict = "unsure"
             flags.append("capped_unconfirmed_type")
         explanation += f" (The scanner could not confirm this object is from {library}, so treat this as a possibility.)"
 
-    citations = [{"note": c.note, "chunk_id": notes[c.note - 1]["chunk"]["chunk_id"], "quote": c.quote} for c in answer.citations]
-    return {**base, "verdict": verdict, "explanation": explanation, "suggested_fix": fix,
-            "citations": citations, "flags": flags, "trace": trace}
+    return {**base, "verdict": verdict, "explanation": explanation, "suggested_fix": fix, "citations": citations,
+            "flags": flags, "trace": trace, "raw_verdict": last_stated}
 
 
 def explain_usages(match_results: list, llm_call, library: str = "the library") -> list:
