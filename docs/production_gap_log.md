@@ -19,6 +19,8 @@ Shortcuts taken for the student/prototype version of Module 1, what production w
 | 11 | All | No automated tests; verification is manual smoke tests | pytest unit tests for ingest, chunk, and the scanner, run in CI | Add `tests/`, then a GitHub Actions workflow |
 | 12 | Chunk | The chunker assumes Sphinx-style `<section>` nesting (page wrapper, then h2, then h3) and the changelog intro is skipped by a hardcoded `source_type` rule | Fall back to heading-based splitting when `<section>` tags are absent; make the intro rule a setting | Add a heading-walk fallback and a `skip_intro_for` setting |
 | 13 | Chunk | Code blocks longer than 150 words are split at a line break, which can cut an example in half | Split code on blank lines or function boundaries and repeat the introducing sentence on each piece | Make the splitter code-aware |
+| 14 | Retrieve | The index is deleted and rebuilt from scratch on every run | Incremental upsert keyed on chunk id plus a content hash, so only changed chunks are re-embedded | Store a hash in each payload and compare before embedding |
+| 15 | Retrieve | Qdrant host/port and the embedding model name are constants in `retrieve.py` | Read from environment variables or settings, with these as defaults | Add env-var overrides |
 
 ## Dropped decisions
 
