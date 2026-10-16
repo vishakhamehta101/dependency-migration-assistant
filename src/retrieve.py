@@ -12,11 +12,13 @@ find its paragraph.
 
 import json
 import logging
+import re
 import uuid
 from pathlib import Path
 
 from qdrant_client import QdrantClient
 from qdrant_client.models import Distance, PointStruct, VectorParams
+from rank_bm25 import BM25Okapi
 
 from ingest import load_settings
 
@@ -33,6 +35,8 @@ QDRANT_HOST = "localhost"
 QDRANT_PORT = 6333
 EMBED_BATCH_SIZE = 32
 UPSERT_BATCH_SIZE = 128
+KEYWORD_SCROLL_BATCH = 256
+_KEYWORD_CACHE = {}  # collection name -> (BM25 index, chunks); built once per process
 
 
 def collection_name(settings: dict) -> str:
@@ -110,9 +114,81 @@ def build_index(settings_path: str, client=None, model=None) -> int:
         ]
         client.upsert(collection_name=name, points=batch)
 
+    _KEYWORD_CACHE.pop(name, None)  # the stored chunks just changed
     count = client.count(collection_name=name, exact=True).count
     logger.info("Indexed %d chunks into collection '%s'", count, name)
     return count
+
+
+def tokenize(text: str) -> list:
+    """Lowercase words: 'DataFrame.append()' -> ['dataframe', 'append']; 'numeric_only' stays one word."""
+    return re.findall(r"\w+", text.lower())
+
+
+def fetch_all_chunks(client, name: str) -> list:
+    """Read every stored chunk back out of Qdrant (payloads only, no vectors)."""
+    chunks, offset = [], None
+    while True:
+        points, offset = client.scroll(
+            collection_name=name, limit=KEYWORD_SCROLL_BATCH,
+            offset=offset, with_payload=True, with_vectors=False,
+        )
+        chunks.extend(point.payload for point in points)
+        if offset is None:
+            return chunks
+
+
+def get_keyword_index(client, name: str):
+    """Build the BM25 index once per process from what Qdrant holds. None if the collection is empty."""
+    if name not in _KEYWORD_CACHE:
+        chunks = fetch_all_chunks(client, name)
+        if not chunks:
+            return None
+        bm25 = BM25Okapi([tokenize(embed_text(c)) for c in chunks])
+        _KEYWORD_CACHE[name] = (bm25, chunks)
+    return _KEYWORD_CACHE[name]
+
+
+def keyword_search(query: str, library: str, top_k: int = 5, filters: dict | None = None, client=None) -> list:
+    """
+    Exact-word (BM25) search over one library's chunks.
+    `filters` matches exact values on any chunk field, e.g. {"version": "2.0.0"}.
+    Chunks sharing no word with the query are never returned.
+    Returns [{"rank": int, "score": float, "chunk": {...}}], best first.
+    """
+    if top_k <= 0:
+        return []
+    tokens = tokenize(query)
+    if not tokens:
+        return []
+
+    name = collection_name({"library": library})
+    client = client or QdrantClient(host=QDRANT_HOST, port=QDRANT_PORT)
+    try:
+        if not client.collection_exists(name):
+            logger.error("Collection '%s' not found — run retrieve.py to build the index first", name)
+            return []
+        index = get_keyword_index(client, name)
+    except Exception as error:
+        logger.error("Cannot reach Qdrant at %s:%s (is the Docker container running?): %s",
+                     QDRANT_HOST, QDRANT_PORT, error)
+        return []
+    if index is None:
+        logger.error("Collection '%s' is empty", name)
+        return []
+
+    bm25, chunks = index
+    scores = bm25.get_scores(tokens)
+    results = []
+    for i in sorted(range(len(chunks)), key=lambda i: -scores[i]):
+        if scores[i] <= 0:
+            break  # everything after this shares no word with the query
+        if filters and any(chunks[i].get(key) != value for key, value in filters.items()):
+            continue
+        results.append({"rank": len(results) + 1, "score": float(scores[i]), "chunk": chunks[i]})
+        if len(results) == top_k:
+            break
+    return results
 
 
 if __name__ == "__main__":
