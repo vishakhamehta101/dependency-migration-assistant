@@ -216,6 +216,19 @@ def get_model():
     return _MODEL_CACHE[MODEL_NAME]
 
 
+def release_model() -> None:
+    """Free the embedding model's memory once matching is done (it is reloaded on the next use)."""
+    import gc
+    _MODEL_CACHE.clear()
+    gc.collect()
+    try:
+        import torch
+        if torch.backends.mps.is_available():
+            torch.mps.empty_cache()
+    except Exception:  # no torch, or no GPU: nothing more to free
+        pass
+
+
 def build_qdrant_filter(filters: dict | None):
     """Turn {"version": "2.0.1", "category": "bug_fix"} into a Qdrant filter. None matches missing/null; a list matches any of its values."""
     if not filters:
