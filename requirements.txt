@@ -4,3 +4,7 @@ sentence-transformers==6.1.0
 qdrant-client==1.19.1
 rank-bm25==0.2.2
 pydantic==2.14.1
+fastapi==0.143.3
+uvicorn==0.54.0
+python-multipart==0.0.32
+httpx==0.28.1

@@ -51,13 +51,15 @@ def ensure_index(client, settings: dict, settings_path: str, model=None) -> tupl
 
 
 def run(target: str, settings: dict, llm_call, client, embedding_model=None, progress=None, model_name: str = "",
-        release_model: bool = True, generated: str = "") -> dict:
+        release_model: bool = True, generated: str = "", target_label: str = "") -> dict:
     """
     Scan `target`, match, explain, report. `progress(stage, done, total, message)` is called along the way
     (stages: scan, match, explain, report). Returns the usages, matcher results, findings, the report text,
-    verdict counts and timings per stage.
+    verdict counts and timings per stage. `target_label` is what the report calls the target (for pasted code or an
+    uploaded zip, where the real folder is a temporary one).
     """
     library = settings["library"]
+    shown = target_label or str(target)
     folder = Path(target)
     if not folder.is_dir():
         raise FileNotFoundError(f"Folder not found: {target}")
@@ -96,11 +98,11 @@ def run(target: str, settings: dict, llm_call, client, embedding_model=None, pro
     started = time.perf_counter()
     notify("report", 0, 1, "building the report")
     versions = ", ".join(settings.get("migration_filters", {}).get("version", []))
-    text = report.build_report(findings, library=library, target=str(target), versions=versions, model_name=model_name, generated=generated)
+    text = report.build_report(findings, library=library, target=shown, versions=versions, model_name=model_name, generated=generated)
     timings["report"] = time.perf_counter() - started
     notify("report", 1, 1, "done")
 
-    return {"library": library, "target": str(target), "usages": usages, "match_results": match_results, "findings": findings,
+    return {"library": library, "target": shown, "usages": usages, "match_results": match_results, "findings": findings,
             "report": text, "counts": dict(Counter(f["verdict"] for f in findings)), "timings": timings, "model": model_name}
 
 

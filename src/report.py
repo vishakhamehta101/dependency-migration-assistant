@@ -76,12 +76,34 @@ def cited_chunks(finding: dict) -> list:
     return [(c, finding["matches"][c["note"] - 1]["chunk"]) for c in finding["citations"]]
 
 
+def display_explanation(finding: dict, library: str) -> str:
+    """The explanation as people see it: an unconfirmed object is described plainly, not with the model's claim."""
+    if "capped_unconfirmed_type" in finding.get("flags", []):
+        return (f"The changelog notes below would apply if this is a {library} object. The scanner could not confirm that it is one "
+                "(it may be, for example, a plain list), so this is shown as unsure.")
+    return finding["explanation"]
+
+
+def how_to_read(model_name: str = "") -> list:
+    """The bullets of 'How to read this report' (Markdown), shared by the report and the web page."""
+    model = f" ({model_name})" if model_name else ""
+    return [
+        "- **Affected** needs two things: the matcher found a removal or a changed argument in the changelog that matches this call, "
+        f"and the AI model{model} explained it with a quote that was checked word for word against that note. "
+        "The model is used only for these confirmed matches.",
+        "- **Needs review** means the changelog mentions the function by name, but no note could be tied to this exact call. "
+        "The model is deliberately not asked about these: a small model can neither confirm nor safely rule out a break from a name match. "
+        "Read the listed notes yourself.",
+        "- **Unsure** means the object may not be from the library (for example a plain list's `.append`), or the AI's answer could not be verified.",
+        "- **No documented change does not mean safe.** Only changes written in the ingested changelog pages are checked, "
+        "and only for calls the scanner found. Behaviour changes that the changelog describes without naming the function can be missed.",
+        "- Suggested fixes appear only when the changelog itself states one.",
+    ]
+
+
 def finding_section(finding: dict, library: str, refs: dict) -> list:
     usage, verdict = finding["usage"], finding["verdict"]
-    explanation = finding["explanation"]
-    if "capped_unconfirmed_type" in finding.get("flags", []):
-        explanation = (f"The changelog notes below would apply if this is a {library} object. The scanner could not confirm that it is one "
-                       "(it may be, for example, a plain list), so this is shown as unsure.")
+    explanation = display_explanation(finding, library)
     lines = [f"#### {LABEL[verdict]} · line {usage['line']} · `{usage['function']}`", "", fence(usage.get("snippet", ""), "python"), "",
              explanation, ""]
     if finding.get("suggested_fix"):
@@ -144,18 +166,7 @@ def build_report(findings: list, library: str, target: str, versions: str = "", 
         out += [f"- `{f['usage']['file']}:{f['usage']['line']}` `{cell(f['usage'].get('snippet', ''))}`" for f in quiet]
         out.append("")
 
-    model = f" ({model_name})" if model_name else ""
-    out += ["## How to read this report", "",
-            "- **Affected** needs two things: the matcher found a removal or a changed argument in the changelog that matches this call, "
-            f"and the AI model{model} explained it with a quote that was checked word for word against that note. "
-            "The model is used only for these confirmed matches.",
-            "- **Needs review** means the changelog mentions the function by name, but no note could be tied to this exact call. "
-            "The model is deliberately not asked about these: a small model can neither confirm nor safely rule out a break from a name match. "
-            "Read the listed notes yourself.",
-            "- **Unsure** means the object may not be from the library (for example a plain list's `.append`), or the AI's answer could not be verified.",
-            "- **No documented change does not mean safe.** Only changes written in the ingested changelog pages are checked, "
-            "and only for calls the scanner found. Behaviour changes that the changelog describes without naming the function can be missed.",
-            "- Suggested fixes appear only when the changelog itself states one.", ""]
+    out += ["## How to read this report", ""] + how_to_read(model_name) + [""]
     if refs:
         out += ["## Sources", ""]
         out += [f"- [{number}] {url}" for url, number in refs.items()]

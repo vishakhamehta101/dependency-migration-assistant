@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dependency Migration Assistant</title>
+<style>
+  :root { --bg:#f5f6f8; --card:#ffffff; --text:#1c2230; --muted:#586174; --line:#d9dde5; --accent:#2457d6; --accent-text:#ffffff;
+          --affected:#c62828; --review:#a65d00; --unsure:#4d6571; --quiet:#2e7d32; --code:#eef1f6; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg:#12151b; --card:#1b2029; --text:#e8ebf1; --muted:#9aa4b5; --line:#2c3340; --accent:#7ba3ff; --accent-text:#0d1220;
+            --affected:#ff8a80; --review:#f0b84a; --unsure:#9db4bf; --quiet:#7bd88a; --code:#232a36; } }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--text); font:16px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { max-width: 960px; margin: 0 auto; padding: 0 20px 60px; }
+  header { padding: 28px 0 8px; }
+  h1 { margin:0; font-size: 1.6rem; }
+  .sub { margin: 4px 0 0; color: var(--muted); }
+  .banner { margin: 16px 0; padding: 10px 14px; border:1px solid var(--review); border-radius: 8px; color: var(--review); font-size: .92rem; }
+  .card { background: var(--card); border:1px solid var(--line); border-radius: 12px; padding: 18px 20px; margin: 16px 0; }
+  .status { color: var(--muted); font-size: .9rem; display:flex; gap: 18px; flex-wrap: wrap; }
+  .dot { display:inline-block; width:9px; height:9px; border-radius:50%; margin-right:6px; background: var(--muted); }
+  .dot.ok { background: var(--quiet); } .dot.bad { background: var(--affected); }
+  .tabs { display:flex; gap: 6px; margin-bottom: 14px; flex-wrap: wrap; }
+  .tab { border:1px solid var(--line); background: transparent; color: var(--text); padding: 7px 14px; border-radius: 8px; cursor:pointer; font: inherit; }
+  .tab[aria-selected="true"] { background: var(--accent); color: var(--accent-text); border-color: var(--accent); }
+  input[type=text], textarea { width:100%; padding: 10px 12px; border:1px solid var(--line); border-radius: 8px; background: var(--bg); color: var(--text); font: 15px/1.4 ui-monospace, Menlo, monospace; }
+  textarea { min-height: 170px; resize: vertical; }
+  .hint { color: var(--muted); font-size: .88rem; margin: 6px 0 0; }
+  button.run { margin-top: 14px; padding: 10px 22px; border:0; border-radius: 8px; background: var(--accent); color: var(--accent-text); font: inherit; font-weight: 600; cursor:pointer; }
+  button.run:disabled { opacity: .5; cursor: default; }
+  .linklike { background:none; border:0; color: var(--accent); cursor:pointer; font: inherit; padding: 0; text-decoration: underline; }
+  .error { margin-top: 12px; padding: 10px 14px; border:1px solid var(--affected); border-radius: 8px; color: var(--affected); }
+  .bar { height: 10px; border-radius: 6px; background: var(--line); overflow:hidden; margin: 10px 0 6px; }
+  .bar > div { height: 100%; width: 0; background: var(--accent); transition: width .3s; }
+  .cards { display:flex; gap: 12px; flex-wrap: wrap; }
+  .stat { flex: 1 1 130px; border:1px solid var(--line); border-radius: 10px; padding: 12px 14px; }
+  .stat b { display:block; font-size: 1.7rem; line-height: 1.1; }
+  .stat span { color: var(--muted); font-size: .86rem; }
+  .stat.affected b { color: var(--affected); } .stat.review b { color: var(--review); } .stat.unsure b { color: var(--unsure); } .stat.quiet b { color: var(--quiet); }
+  .chips { display:flex; gap: 8px; flex-wrap: wrap; margin: 16px 0 4px; }
+  .chip { border:1px solid var(--line); background: transparent; color: var(--text); padding: 5px 12px; border-radius: 999px; cursor:pointer; font: inherit; font-size: .9rem; }
+  .chip[aria-pressed="true"] { background: var(--text); color: var(--bg); border-color: var(--text); }
+  h2 { font-size: 1.15rem; margin: 22px 0 8px; }
+  h3.file { font: 600 .95rem ui-monospace, Menlo, monospace; margin: 22px 0 8px; color: var(--muted); }
+  details.finding { border:1px solid var(--line); border-radius: 10px; margin: 8px 0; background: var(--card); }
+  details.finding > summary { cursor:pointer; padding: 10px 14px; display:flex; gap: 10px; align-items:center; flex-wrap: wrap; }
+  .badge { font-size: .74rem; font-weight: 700; letter-spacing: .03em; padding: 2px 8px; border-radius: 999px; border:1px solid currentColor; text-transform: uppercase; }
+  .badge.affected { color: var(--affected); } .badge.review { color: var(--review); } .badge.unsure { color: var(--unsure); } .badge.quiet { color: var(--quiet); }
+  .where { font-family: ui-monospace, Menlo, monospace; font-size: .9rem; }
+  .body { padding: 0 14px 14px; }
+  pre { background: var(--code); border-radius: 8px; padding: 10px 12px; overflow-x: auto; margin: 8px 0; font: 14px/1.4 ui-monospace, Menlo, monospace; }
+  blockquote { margin: 8px 0; padding: 6px 12px; border-left: 3px solid var(--accent); background: var(--code); border-radius: 0 8px 8px 0; font-size: .92rem; }
+  .src { color: var(--muted); font-size: .84rem; }
+  .src a { color: var(--accent); }
+  ul.notes { padding-left: 18px; margin: 6px 0; } ul.notes li { margin: 6px 0; font-size: .92rem; }
+  .quietrow { padding: 8px 14px; border:1px solid var(--line); border-radius: 10px; margin: 6px 0; background: var(--card); font-size: .9rem; display:flex; gap: 10px; flex-wrap: wrap; }
+  .meta { color: var(--muted); font-size: .88rem; }
+  a.download { display:inline-block; margin-top: 10px; color: var(--accent); font-weight: 600; }
+  details.howto { margin-top: 24px; } details.howto summary { cursor:pointer; font-weight: 600; }
+  details.howto ul { padding-left: 20px; } details.howto li { margin: 8px 0; }
+  code { background: var(--code); padding: 1px 5px; border-radius: 4px; font-size: .9em; }
+  [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>Dependency Migration Assistant</h1>
+    <p class="sub">Checks Python code against a library's changelog before you upgrade.</p>
+  </header>
+
+  <div class="banner" id="banner"></div>
+
+  <div class="card">
+    <div class="status" id="status"></div>
+  </div>
+
+  <div class="card">
+    <div class="tabs" role="tablist">
+      <button class="tab" role="tab" data-mode="path" aria-selected="true">Folder on this computer</button>
+      <button class="tab" role="tab" data-mode="zip" aria-selected="false">Upload a zip</button>
+      <button class="tab" role="tab" data-mode="paste" aria-selected="false">Paste code</button>
+    </div>
+    <div id="pane-path">
+      <input type="text" id="path-input" placeholder="/Users/you/projects/my-app" autocomplete="off" spellcheck="false">
+      <p class="hint">The folder is read in place and never copied or uploaded. Folders such as venv, .git and node_modules are skipped.</p>
+    </div>
+    <div id="pane-zip" hidden>
+      <input type="file" id="zip-input" accept=".zip,application/zip">
+      <p class="hint">Only the .py files inside are unpacked, into a temporary folder that is deleted afterwards.</p>
+    </div>
+    <div id="pane-paste" hidden>
+      <textarea id="paste-input" placeholder="Paste Python code here" spellcheck="false"></textarea>
+      <p class="hint"><button class="linklike" id="example-btn" type="button">Fill in an example</button></p>
+    </div>
+    <button class="run" id="run-btn" type="button">Check this code</button>
+    <div class="error" id="form-error" role="alert" hidden></div>
+  </div>
+
+  <div class="card" id="progress" hidden>
+    <strong id="stage-text">Starting</strong>
+    <div class="bar"><div id="bar-fill"></div></div>
+    <div class="meta" id="stage-detail"></div>
+  </div>
+
+  <section id="results" hidden>
+    <div class="card">
+      <div class="meta" id="result-meta"></div>
+      <div class="cards" id="summary"></div>
+      <a class="download" id="download" download="migration_report.md">Download the full report (Markdown)</a>
+    </div>
+    <div class="chips" id="filters"></div>
+    <div id="findings"></div>
+    <details class="howto" id="howto"><summary>How to read these results</summary><ul id="howto-list"></ul></details>
+  </section>
+</main>
+
+<script>
+"use strict";
+const $ = (id) => document.getElementById(id);
+const VERDICTS = {
+  affected: { label: "Affected", cls: "affected" }, needs_review: { label: "Needs review", cls: "review" },
+  unsure: { label: "Unsure", cls: "unsure" }, not_affected: { label: "Not affected", cls: "quiet" },
+  no_documented_change: { label: "No documented change", cls: "quiet" },
+};
+const ORDER = ["affected", "needs_review", "unsure", "not_affected", "no_documented_change"];
+const STAGES = { scan: [0, 5, "Looking for uses of the library"], match: [5, 25, "Finding changelog notes"],
+                 explain: [25, 95, "Checking each use"], report: [95, 100, "Building the report"] };
+const EXAMPLE = "import pandas as pd\n\ndef load(path, extra):\n    df = pd.read_csv(path, error_bad_lines=False)\n    df = df.append(extra)\n    return df.groupby(\"kind\", squeeze=True)\n";
+const POLL_MS = 500;
+let mode = "path", filter = "all", lastJob = null, busy = false;
+
+// Everything dynamic goes through textContent and text nodes, never through HTML strings: code and changelog text are data.
+function el(tag, options, children) {
+  const node = document.createElement(tag);
+  options = options || {};
+  if (options.cls) node.className = options.cls;
+  if (options.text !== undefined) node.textContent = options.text;
+  for (const [key, value] of Object.entries(options.attrs || {})) node.setAttribute(key, value);
+  for (const child of [].concat(children || [])) node.append(child);
+  return node;
+}
+function inline(text) {  // **bold** and `code` only
+  const fragment = document.createDocumentFragment();
+  for (const part of String(text).split(/(\*\*[^*]+\*\*|`[^`]+`)/)) {
+    if (!part) continue;
+    if (part.startsWith("**")) fragment.append(el("strong", { text: part.slice(2, -2) }));
+    else if (part.startsWith("`")) fragment.append(el("code", { text: part.slice(1, -1) }));
+    else fragment.append(part);
+  }
+  return fragment;
+}
+function clear(node) { while (node.firstChild) node.removeChild(node.firstChild); }
+function showError(message) { const box = $("form-error"); box.textContent = message; box.hidden = false; }
+function hideError() { $("form-error").hidden = true; }
+function setBusy(value) { busy = value; $("run-btn").disabled = value; }
+async function readJson(response) { try { return await response.json(); } catch (e) { return {}; } }
+function messageOf(data, status) { return typeof data.detail === "string" ? data.detail : "That did not work (" + status + "). Please check what you entered."; }
+
+async function loadStatus() {
+  let status;
+  try { status = await readJson(await fetch("/api/status")); } catch (e) { $("banner").textContent = "Cannot reach the app."; return; }
+  $("banner").textContent = "Prototype \u00b7 " + status.library + (status.versions ? " \u2192 " + status.versions : "") +
+    " only \u00b7 everything runs on this computer, nothing is uploaded";
+  const box = $("status");
+  clear(box);
+  const ai = status.ai_up && status.ai_model_ready;
+  box.append(el("span", {}, [el("span", { cls: "dot " + (ai ? "ok" : "bad") }),
+    ai ? "AI model " + status.model + " is ready" : (status.ai_up ? "AI model " + status.model + " is not downloaded" : "AI server is not running (run: ollama serve)")]));
+  box.append(el("span", {}, [el("span", { cls: "dot ok" }), status.index_notes + " changelog notes loaded"]));
+  box.append(el("span", {}, "Limits: " + status.limits.max_py_files + " Python files, " + status.limits.max_zip_mb + " MB zip"));
+}
+
+function setMode(next) {
+  mode = next;
+  for (const tab of document.querySelectorAll(".tab")) tab.setAttribute("aria-selected", String(tab.dataset.mode === mode));
+  for (const name of ["path", "zip", "paste"]) $("pane-" + name).hidden = name !== mode;
+  hideError();
+}
+
+async function startRun() {
+  if (busy) return;
+  hideError();
+  $("results").hidden = true;
+  const zip = $("zip-input").files[0];
+  if (mode === "zip" && !zip) return showError("Choose a zip file first.");
+  setBusy(true);                       // disable the button the moment it is clicked, so a double click cannot start two runs
+  let response;
+  try {
+    if (mode === "zip") {
+      const form = new FormData();
+      form.append("file", zip);
+      response = await fetch("/api/jobs/zip", { method: "POST", body: form });
+    } else {
+      const body = mode === "path" ? { kind: "path", path: $("path-input").value } : { kind: "paste", code: $("paste-input").value };
+      response = await fetch("/api/jobs", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
+    }
+  } catch (e) { setBusy(false); return showError("Cannot reach the app. Is it still running in Terminal?"); }
+  const data = await readJson(response);
+  if (!response.ok) { setBusy(false); return showError(messageOf(data, response.status)); }
+  pollJob(data.job_id);
+}
+
+function updateProgress(job) {
+  const stage = STAGES[job.stage] || STAGES.scan;
+  const fraction = job.total > 0 ? job.done / job.total : 0;
+  $("bar-fill").style.width = Math.round(stage[0] + (stage[1] - stage[0]) * fraction) + "%";
+  $("stage-text").textContent = stage[2];
+  $("stage-detail").textContent = (job.total > 1 ? job.done + " of " + job.total + " \u00b7 " : "") + (job.message || "");
+}
+
+async function pollJob(id) {
+  setBusy(true);
+  $("progress").hidden = false;
+  try {
+    for (;;) {
+      const job = await readJson(await fetch("/api/jobs/" + id));
+      updateProgress(job);
+      if (job.status === "done") { lastJob = job; filter = "all"; renderResults(job, id); break; }
+      if (job.status === "error") { showError(job.error || "The run failed."); break; }
+      await new Promise((resolve) => setTimeout(resolve, POLL_MS));
+    }
+  } catch (e) { showError("Lost contact with the app while it was working."); }
+  $("progress").hidden = true;
+  setBusy(false);
+  loadStatus();
+}
+
+function safeLink(url, text) {
+  return /^https?:\/\//.test(url || "") ? el("a", { text: text, attrs: { href: url, target: "_blank", rel: "noopener noreferrer" } }) : document.createTextNode("");
+}
+function sourceLine(source) {
+  const where = [source.version ? "version " + source.version : "", source.section || "", source.subsection || ""].filter(Boolean).join(" \u00b7 ");
+  return el("div", { cls: "src" }, [where + " ", safeLink(source.url, "source")]);
+}
+function badge(verdict) { const v = VERDICTS[verdict]; return el("span", { cls: "badge " + v.cls, text: v.label }); }
+
+function findingCard(finding) {
+  const card = el("details", { cls: "finding" });
+  if (finding.verdict === "affected") card.open = true;
+  card.append(el("summary", {}, [badge(finding.verdict), el("span", { cls: "where", text: "line " + finding.line + " \u00b7 " + finding.function })]));
+  const body = el("div", { cls: "body" });
+  body.append(el("pre", {}, el("code", { text: finding.snippet })));
+  body.append(el("p", { text: finding.explanation }));
+  if (finding.suggested_fix) body.append(el("p", {}, [el("strong", { text: "Fix suggested by the changelog: " }), finding.suggested_fix]));
+  if (finding.citations.length) {
+    body.append(el("strong", { text: "Evidence" }));
+    for (const citation of finding.citations) body.append(el("blockquote", {}, [citation.quote, sourceLine(citation)]));
+  }
+  if (finding.notes.length) {
+    body.append(el("strong", { text: "Matched notes (read these to decide)" }));
+    body.append(el("ul", { cls: "notes" }, finding.notes.map((note) => el("li", {}, [note.text, sourceLine(note)]))));
+  }
+  card.append(body);
+  return card;
+}
+
+function renderFindings() {
+  const box = $("findings");
+  clear(box);
+  const findings = lastJob.result.findings.filter((f) => filter === "all" || f.verdict === filter);
+  if (!findings.length) { box.append(el("p", { cls: "meta", text: "Nothing to show for this filter." })); return; }
+  const files = [...new Set(findings.map((f) => f.file))].sort();
+  for (const file of files) {
+    box.append(el("h3", { cls: "file", text: file }));
+    for (const finding of findings.filter((f) => f.file === file).sort((a, b) => a.line - b.line)) {
+      if (finding.verdict === "no_documented_change") {
+        box.append(el("div", { cls: "quietrow" }, [badge(finding.verdict), el("span", { cls: "where", text: "line " + finding.line }), el("code", { text: finding.snippet })]));
+      } else box.append(findingCard(finding));
+    }
+  }
+}
+
+function renderFilters() {
+  const box = $("filters");
+  clear(box);
+  const counts = lastJob.result.counts;
+  const total = lastJob.result.findings.length;
+  const options = [["all", "All (" + total + ")"]].concat(ORDER.filter((v) => counts[v]).map((v) => [v, VERDICTS[v].label + " (" + counts[v] + ")"]));
+  for (const [value, label] of options) {
+    const chip = el("button", { cls: "chip", text: label, attrs: { type: "button", "aria-pressed": String(filter === value) } });
+    chip.addEventListener("click", () => { filter = value; renderFilters(); renderFindings(); });
+    box.append(chip);
+  }
+}
+
+function renderResults(job, id) {
+  const result = job.result;
+  $("result-meta").textContent = "Scanned " + result.label + " \u00b7 " + result.findings.length + " use(s) of " + result.library +
+    " \u00b7 AI model " + result.model + " \u00b7 " + Object.values(result.timings).reduce((a, b) => a + b, 0).toFixed(0) + " s";
+  const summary = $("summary");
+  clear(summary);
+  for (const verdict of ORDER.filter((v) => result.counts[v])) {
+    summary.append(el("div", { cls: "stat " + VERDICTS[verdict].cls }, [el("b", { text: String(result.counts[verdict]) }), el("span", { text: VERDICTS[verdict].label })]));
+  }
+  if (!result.findings.length) summary.append(el("p", { text: "No uses of " + result.library + " were found, so there is nothing to report." }));
+  $("download").setAttribute("href", "/api/jobs/" + id + "/report.md");
+  const list = $("howto-list");
+  clear(list);
+  for (const bullet of result.how_to_read) list.append(el("li", {}, inline(bullet.replace(/^- /, ""))));
+  renderFilters();
+  renderFindings();
+  $("results").hidden = false;
+}
+
+for (const tab of document.querySelectorAll(".tab")) tab.addEventListener("click", () => setMode(tab.dataset.mode));
+$("run-btn").addEventListener("click", startRun);
+$("path-input").addEventListener("keydown", (event) => { if (event.key === "Enter") startRun(); });
+$("example-btn").addEventListener("click", () => { $("paste-input").value = EXAMPLE; });
+loadStatus();
+</script>
+</body>
+</html>
