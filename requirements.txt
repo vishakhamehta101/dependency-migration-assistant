@@ -8,3 +8,5 @@ fastapi==0.143.3
 uvicorn==0.54.0
 python-multipart==0.0.32
 httpx==0.28.1
+scikit-learn==1.9.1
+joblib==1.6.0

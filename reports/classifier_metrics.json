@@ -1,0 +1,115 @@
+{
+  "training_notes": 775,
+  "cv_folds": 5,
+  "cv_accuracy": 0.9174,
+  "classes": [
+    "breaking_change",
+    "bug_fix",
+    "deprecation",
+    "enhancement",
+    "performance",
+    "regression_fix"
+  ],
+  "per_class": {
+    "breaking_change": {
+      "precision": 0.9164265129682997,
+      "recall": 0.9244186046511628,
+      "f1-score": 0.9204052098408104,
+      "support": 344.0
+    },
+    "bug_fix": {
+      "precision": 0.966804979253112,
+      "recall": 0.9246031746031746,
+      "f1-score": 0.9452332657200812,
+      "support": 252.0
+    },
+    "deprecation": {
+      "precision": 0.88,
+      "recall": 0.7857142857142857,
+      "f1-score": 0.8301886792452831,
+      "support": 28.0
+    },
+    "enhancement": {
+      "precision": 0.7411764705882353,
+      "recall": 0.875,
+      "f1-score": 0.802547770700637,
+      "support": 72.0
+    },
+    "performance": {
+      "precision": 1.0,
+      "recall": 0.9516129032258065,
+      "f1-score": 0.9752066115702479,
+      "support": 62.0
+    },
+    "regression_fix": {
+      "precision": 0.8888888888888888,
+      "recall": 0.9411764705882353,
+      "f1-score": 0.9142857142857143,
+      "support": 17.0
+    },
+    "accuracy": 0.9174193548387096,
+    "macro avg": {
+      "precision": 0.8988828086164228,
+      "recall": 0.9004209064637775,
+      "f1-score": 0.897977875227129,
+      "support": 775.0
+    },
+    "weighted avg": {
+      "precision": 0.9212921190017334,
+      "recall": 0.9174193548387096,
+      "f1-score": 0.9185194383435167,
+      "support": 775.0
+    }
+  },
+  "confusion_matrix": [
+    [
+      318,
+      6,
+      3,
+      17,
+      0,
+      0
+    ],
+    [
+      13,
+      233,
+      0,
+      5,
+      0,
+      1
+    ],
+    [
+      6,
+      0,
+      22,
+      0,
+      0,
+      0
+    ],
+    [
+      8,
+      1,
+      0,
+      63,
+      0,
+      0
+    ],
+    [
+      2,
+      0,
+      0,
+      0,
+      59,
+      1
+    ],
+    [
+      0,
+      1,
+      0,
+      0,
+      0,
+      16
+    ]
+  ],
+  "disagreements": 64
+}
