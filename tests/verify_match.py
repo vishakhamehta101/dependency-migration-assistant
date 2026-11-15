@@ -5,7 +5,7 @@ import match, retrieve
 import scan as scanner
 from qdrant_client import QdrantClient
 
-CLIENT = QdrantClient(host="localhost", port=6333)
+CLIENT = QdrantClient(path="data/qdrant_local")
 MODEL = retrieve.get_model()
 
 LIBRARY = "pandas"

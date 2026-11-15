@@ -52,7 +52,7 @@ check("confidence: low when the scanner could not confirm pandas, high otherwise
       and match.match_usage({"function": "append"}, [])["confidence"] == "high")
 
 # ---- part 2: the whole chain on the sample project (real Qdrant + real model) ----
-CLIENT = QdrantClient(host="localhost", port=6333)
+CLIENT = QdrantClient(path="data/qdrant_local")
 MODEL = retrieve.get_model()
 
 LIBRARY = "pandas"
