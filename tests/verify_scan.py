@@ -102,5 +102,24 @@ with tempfile.TemporaryDirectory() as empty:
 capture.messages.clear()
 check("path that does not exist -> [] and an error", scanner.scan("no/such/folder", settings) == [] and any("not found" in m for m in capture.messages))
 
+with tempfile.TemporaryDirectory() as d:
+    project = Path(d)
+    test_file = project / "scope_test.py"
+
+    test_file.write_text(
+        "def local_function():\n"
+        "    import pandas as pd\n"
+        "    return pd.read_csv('inside.csv')\n"
+        "\n"
+        "def other_function():\n"
+        "    return pd.read_csv('outside.csv')\n"
+    )
+
+    scope_usages = scanner.scan(str(project), settings)
+
+    check(
+        "function-local pandas import does not leak into another function",
+        len(scope_usages) == 1
+    )
 print("\nALL CHECKS PASSED:", ok_all)
 sys.exit(0 if ok_all else 1)

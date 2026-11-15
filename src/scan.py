@@ -48,41 +48,55 @@ def path_inside_library(module_name: str, import_names: list) -> str | None:
 
 
 def collect_bindings(tree, import_names: list) -> dict:
-    """name -> (path inside the library, 'module' | 'imported_name'), for every import of the library."""
+    """Collect only module-level library imports."""
     bindings = {}
-    for node in ast.walk(tree):
+
+    for node in tree.body:
         if isinstance(node, ast.Import):
             for alias in node.names:
                 inside = path_inside_library(alias.name, import_names)
                 if inside is None:
                     continue
+
                 if alias.asname:
                     bindings[alias.asname] = (inside, "module")
                 else:
-                    bindings[alias.name.split(".")[0]] = ("", "module")  # `import pandas.api.types` binds `pandas`
+                    bindings[alias.name.split(".")[0]] = ("", "module")
+
         elif isinstance(node, ast.ImportFrom) and node.module and node.level == 0:
             inside = path_inside_library(node.module, import_names)
             if inside is None:
                 continue
+
             for alias in node.names:
                 if alias.name == "*":
                     continue
+
                 path = f"{inside}.{alias.name}" if inside else alias.name
                 bindings[alias.asname or alias.name] = (path, "imported_name")
+
     return bindings
 
 
 class UsageVisitor(ast.NodeVisitor):
     """Walks one file in source order, tracking which variables hold library objects."""
 
-    def __init__(self, bindings: dict, known_names, relative_path: str, lines: list):
-        self.bindings = bindings
+    def __init__(self, bindings: dict, known_names, relative_path: str, lines: list, import_names: list):
+        self.binding_scopes = [bindings.copy()]
+        self.import_names = import_names
         self.known_names = known_names
         self.relative_path = relative_path
         self.lines = lines
         self.scopes = [set()]  # names that hold library objects; innermost scope last
         self.usages = []
         self.unresolved_skipped = 0
+
+    @property
+    def bindings(self):
+        result = {}
+        for scope in self.binding_scopes:
+            result.update(scope)
+        return result
 
     @property
     def tracked(self) -> set:
@@ -143,6 +157,36 @@ class UsageVisitor(ast.NodeVisitor):
         (self.tracked.add if tracked else self.tracked.discard)(name)
 
     # ---- what gets recorded -------------------------------------------------
+    def visit_Import(self, node):
+        for alias in node.names:
+            name = alias.asname or alias.name.split(".")[0]
+            inside = path_inside_library(alias.name, self.import_names)
+
+            if inside is not None:
+                self.binding_scopes[-1][name] = (
+                    inside if alias.asname else "",
+                    "module"
+                )
+            else:
+                self.binding_scopes[-1].pop(name, None)
+
+    def visit_ImportFrom(self, node):
+        if node.level != 0 or not node.module:
+            return
+
+        inside = path_inside_library(node.module, self.import_names)
+
+        for alias in node.names:
+            if alias.name == "*":
+                continue
+
+            name = alias.asname or alias.name
+
+            if inside is not None:
+                path = f"{inside}.{alias.name}" if inside else alias.name
+                self.binding_scopes[-1][name] = (path, "imported_name")
+            else:
+                self.binding_scopes[-1].pop(name, None)
 
     def visit_Call(self, node):
         keywords = [keyword.arg for keyword in node.keywords if keyword.arg]  # **kwargs has no name
@@ -154,7 +198,8 @@ class UsageVisitor(ast.NodeVisitor):
             if self.is_library_object(receiver):
                 self.record(node, name, "tracked_variable", "call", keywords)
             elif self.known_names is not None and name in self.known_names:
-                self.record(node, name, "unknown", "call", keywords)
+                if self.binding_scopes[0]:
+                    self.record(node, name, "unknown", "call", keywords)
             else:
                 self.unresolved_skipped += 1
             self.visit(receiver)  # the receiver may hold further calls: df.groupby(...).agg(...)
@@ -210,7 +255,9 @@ class UsageVisitor(ast.NodeVisitor):
     def visit_FunctionDef(self, node):
         for decorator in node.decorator_list:
             self.visit(decorator)
-        self.visit(node.args)  # defaults and annotations
+
+        self.visit(node.args)
+
         if node.returns is not None:
             self.visit(node.returns)
 
@@ -218,16 +265,22 @@ class UsageVisitor(ast.NodeVisitor):
         every_argument = arguments.posonlyargs + arguments.args + arguments.kwonlyargs
         every_argument += [a for a in (arguments.vararg, arguments.kwarg) if a is not None]
 
-        scope = set(self.tracked)  # names visible from the enclosing scope
+        scope = set(self.tracked)
+
         for argument in every_argument:
             if argument.annotation is not None and self.is_library_annotation(argument.annotation):
                 scope.add(argument.arg)
             else:
-                scope.discard(argument.arg)  # a parameter shadows any outer name
+                scope.discard(argument.arg)
+
+        self.binding_scopes.append({})
         self.scopes.append(scope)
+
         for statement in node.body:
             self.visit(statement)
+
         self.scopes.pop()
+        self.binding_scopes.pop()
 
     visit_AsyncFunctionDef = visit_FunctionDef
 
@@ -242,13 +295,17 @@ def scan_file(path: Path, base: Path, import_names: list, known_names):
         return None
 
     bindings = collect_bindings(tree, import_names)
-    if not bindings:
-        return [], 0  # this file never imports the library, so nothing in it can be a usage
 
-    visitor = UsageVisitor(bindings, known_names, path.relative_to(base).as_posix(), re.split(r"\r\n|\r|\n", source))
+    visitor = UsageVisitor(
+        bindings,
+        known_names,
+        path.relative_to(base).as_posix(),
+        re.split(r"\r\n|\r|\n", source),
+        import_names
+    )
+
     visitor.visit(tree)
     return visitor.usages, visitor.unresolved_skipped
-
 
 def scan(path: str, settings: dict, known_names: set | None = None) -> list:
     """

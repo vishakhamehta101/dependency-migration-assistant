@@ -137,6 +137,7 @@ def describe(finding: dict) -> None:
 if __name__ == "__main__":
     import llm
     import snapshot
+    import tempfile
 
     config, results = llm.load_llm_config(), snapshot.load_matches()
     if config is None or results is None:
@@ -155,7 +156,7 @@ if __name__ == "__main__":
         findings, seconds, calls = run_once(results, model, label)
         runs.append(findings)
         stats.append((seconds, calls, swap_used_mb()))
-        with open(f"/tmp/ai_findings_{label.replace(' ', '')}.json", "w") as handle:
+        with open(f"{tempfile.gettempdir()}/ai_findings_{label.replace(' ', '')}.json", "w") as handle:
             json.dump(findings, handle, indent=2)
 
     gates = evaluate_gates(runs[0], runs[1])
